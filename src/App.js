@@ -1,7 +1,8 @@
 import './App.css';
+import LandingLoading from './components/LandingLoading';
 
 function App() {
-	return <div>Hello world</div>;
+	return <LandingLoading />;
 }
 
 export default App;
