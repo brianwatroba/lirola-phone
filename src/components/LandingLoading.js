@@ -12,7 +12,6 @@ const LandingLoading = () => {
 	`;
 	const Name = styled.div`
 		font-size: 36px;
-		padding: 0px 0px 48px 0px;
 	`;
 	const Image = styled.img``;
 
