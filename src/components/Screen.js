@@ -9,7 +9,6 @@ const Screen = () => {
 		<Container>
 			<StatusBar>
 				<img src={batteryIcon} height="32" alt="battery" />
-
 				<Clock>
 					{new Date().getHours()}:{new Date().getMinutes()}
 				</Clock>
@@ -43,7 +42,7 @@ const FadeInOut = keyframes`
 const StatusBar = styled.div`
 	display: flex;
 	width: auto;
-	padding: 4px 8px;
+	padding: 4px 8px 0px 8px;
 	justify-content: space-between;
 	flex-direction: row;
 `;

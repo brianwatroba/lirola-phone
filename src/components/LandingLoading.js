@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import signal from '../icons/signal.svg';
-import searching from '../icons/searchingForService.svg';
 
 const LandingLoading = () => {
 	return (
