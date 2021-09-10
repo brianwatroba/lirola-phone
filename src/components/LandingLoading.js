@@ -1,26 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
-import searchingForService from '../icons/searchingForService.svg';
+import signal from '../icons/signal.svg';
+import searching from '../icons/searchingForService.svg';
 
 const LandingLoading = () => {
-	const Container = styled.div`
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		height: 100vh;
-	`;
-	const Name = styled.div`
-		font-size: 36px;
-	`;
-	const Image = styled.img``;
-
 	return (
 		<Container>
 			<Name>JESSE LIROLA</Name>
-			<Image src={searchingForService} />
+			<div>
+				<Image src={signal} />
+			</div>
+			<Title>SEARCHING...</Title>
 		</Container>
 	);
 };
+
+const Container = styled.div`
+	display: flex;
+	text-align: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	padding: 10vh 0 0 0;
+`;
+const Name = styled.div`
+	font-size: 12px;
+	color: #bfbfbf;
+	margin-bottom: 10%;
+`;
+const Image = styled.img`
+	height: 75px;
+	width: 75px;
+	margin: 0 0 18px 0;
+`;
+const Title = styled.div`
+	font-size: 16px;
+	color: #5a5a5a;
+`;
 
 export default LandingLoading;
