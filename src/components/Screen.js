@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import phoneWallpaper from '../icons/phonewallpaper.png';
 import batteryIcon from '../icons/battery.png';
 import signalIcon from '../icons/signal.png';
