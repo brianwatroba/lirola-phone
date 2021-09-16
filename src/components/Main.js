@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Phone from './Phone';
+
 import Screen from './Screen';
 
 const Main = () => {
@@ -14,13 +15,10 @@ const Main = () => {
 };
 
 const FlexContainer = styled.div`
-	position: absolute;
-	top: 0;
 	display: flex;
-	align-items: center;
-	flex-direction: column;
 	text-align: center;
-	height: 100vh;
+	justify-content: center;
+	height: 100%;
 	width: 100%;
 	background-color: #222;
 `;

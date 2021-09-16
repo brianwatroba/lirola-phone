@@ -1,21 +1,23 @@
-import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 import phoneWallpaper from '../icons/phonewallpaper.png';
 import batteryIcon from '../icons/battery.png';
 import signalIcon from '../icons/signal.png';
+import dayjs from 'dayjs';
+// import localeData from 'dayjs/plugin/localeData';
+// dayjs.extend(localeData);
 
 const Screen = () => {
+	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return (
 		<Container>
 			<StatusBar>
 				<img src={batteryIcon} height="32" alt="battery" />
-				<Clock>
-					{new Date().getHours()}:{new Date().getMinutes()}
-				</Clock>
+				<Clock>{time}</Clock>
 				<img src={signalIcon} height="32" alt="signal" />
 			</StatusBar>
 			<ScreenContent>
-				<ReadyText>Ready</ReadyText>
+				<ReadyText>Searching...</ReadyText>
 			</ScreenContent>
 		</Container>
 	);
@@ -60,17 +62,14 @@ const ScreenContent = styled.div`
 const Clock = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: 10px;
+	font-size: 1.25vh;
 	color: #848484;
 `;
 
 const ReadyText = styled.div`
-	font-size: 16px;
-	// display: inline-block;
-	// align-items: center;
+	font-size: 1.25vh;
 	color: #5a5a5a;
 	animation: ${FadeInOut} 2s ease-out infinite;
-	// -webkit-animation: ${FadeInOut} 2s ease-out infinite;
 `;
 
 export default Screen;
