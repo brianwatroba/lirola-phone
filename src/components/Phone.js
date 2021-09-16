@@ -1,27 +1,66 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {
+	useState,
+	useCallback,
+	useLayoutEffect,
+	useRef,
+	useEffect,
+} from 'react';
+import useResizeObserver from '@react-hook/resize-observer';
 import './phone.css';
 
 const Phone = ({ children }) => {
-	const screenRect = useRef();
 	const [screenPosition, setScreenPosition] = useState({});
+	const screenRect = useRef();
+
+	var ro = new ResizeObserver((entries) => {
+		console.log('firing');
+		for (let entry of entries) {
+			const cr = entry.contentRect;
+			console.log('Element:', entry.target);
+			console.log(`Element size: ${cr.width}px x ${cr.height}px`);
+			console.log(`Element padding: ${cr.top}px ; ${cr.left}px`);
+		}
+	});
 
 	useEffect(() => {
 		const screenRectBoundingRect = screenRect.current.getBoundingClientRect();
 		setScreenPosition({
 			top: screenRectBoundingRect.top,
-			left: screenRectBoundingRect.left,
-			right: screenRectBoundingRect.right,
 			height: screenRectBoundingRect.height,
 			width: screenRectBoundingRect.width,
-			bottom: screenRectBoundingRect.bottom,
 		});
-	});
+
+		ro.observe(screenRect.current);
+		console.log(ro);
+	}, [ro]);
+
+	// const screenRect = useCallback((node) => {
+	// 	if (node !== null) {
+	// 		const screenRectBoundingRect = node.getBoundingClientRect();
+	// 		setScreenPosition({
+	// 			top: screenRectBoundingRect.top,
+	// 			height: screenRectBoundingRect.height,
+	// 			width: screenRectBoundingRect.width,
+	// 		});
+	// 	}
+	// var ro = new ResizeObserver((entries) => {
+	// 	for (let entry of entries) {
+	// 		const cr = entry.contentRect;
+	// 		console.log('Element:', entry.target);
+	// 		console.log(`Element size: ${cr.width}px x ${cr.height}px`);
+	// 		console.log(`Element padding: ${cr.top}px ; ${cr.left}px`);
+	// 	}
+	// });
+	// ro.observe(node);
+	// }, []);
+
 	return (
 		<div
 			style={{
 				position: 'relative',
 				height: '85vh',
 				backgroundColor: '#222',
+				textAlign: 'center',
 			}}
 		>
 			<svg
@@ -985,7 +1024,7 @@ const Phone = ({ children }) => {
 					zIndex: '1000',
 					width: screenPosition.width,
 					height: screenPosition.height,
-					top: '23.9%',
+					top: screenPosition.top,
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					left: '0',

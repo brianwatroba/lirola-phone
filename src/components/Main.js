@@ -17,19 +17,10 @@ const Main = () => {
 const FlexContainer = styled.div`
 	display: flex;
 	text-align: center;
+	justify-content: center;
 	height: 100%;
 	width: 100%;
 	background-color: #222;
 `;
-
-// const Screen = styled.div`
-// 	background-color: green;
-// 	z-index: 10;
-// 	position: absolute;
-// 	width: 80%;
-// 	height: 225.823px;
-// 	top: 10%;
-// 	left: 43.9%;
-// `;
 
 export default Main;
