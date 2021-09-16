@@ -1,26 +1,11 @@
-import React, {
-	useState,
-	useCallback,
-	useLayoutEffect,
-	useRef,
-	useEffect,
-} from 'react';
-import useResizeObserver from '@react-hook/resize-observer';
+import React, { useState, useRef, useEffect } from 'react';
 import './phone.css';
 
 const Phone = ({ children }) => {
 	const [screenPosition, setScreenPosition] = useState({});
 	const screenRect = useRef();
 
-	var ro = new ResizeObserver((entries) => {
-		console.log('firing');
-		for (let entry of entries) {
-			const cr = entry.contentRect;
-			console.log('Element:', entry.target);
-			console.log(`Element size: ${cr.width}px x ${cr.height}px`);
-			console.log(`Element padding: ${cr.top}px ; ${cr.left}px`);
-		}
-	});
+	var resizeObserver = new ResizeObserver((entries) => {});
 
 	useEffect(() => {
 		const screenRectBoundingRect = screenRect.current.getBoundingClientRect();
@@ -30,9 +15,8 @@ const Phone = ({ children }) => {
 			width: screenRectBoundingRect.width,
 		});
 
-		ro.observe(screenRect.current);
-		console.log(ro);
-	}, [ro]);
+		resizeObserver.observe(screenRect.current);
+	}, [resizeObserver]);
 
 	// const screenRect = useCallback((node) => {
 	// 	if (node !== null) {
