@@ -5,7 +5,6 @@ import './phone.css';
 
 const Phone = ({ children }) => {
 	const [bbox, ref] = useBbox();
-	const { height, width, top } = bbox;
 
 	return (
 		<div
@@ -973,9 +972,7 @@ const Phone = ({ children }) => {
 					></image>
 				</defs>
 			</svg>
-			<ScreenContainer top={50} width height>
-				{children}
-			</ScreenContainer>
+			<ScreenContainer bbox={bbox}>{children}</ScreenContainer>
 		</div>
 	);
 };
@@ -983,10 +980,10 @@ const Phone = ({ children }) => {
 const ScreenContainer = styled.div`
 	position: absolute;
 	background-color: green;
-	z-index: '1000';
-	width: ${(props) => props.width};
-	height: ${(props) => props.height};
-	top: ${(props) => props.top};
+	z-index: 1000;
+	width: ${(props) => props.bbox.width}px;
+	height: ${(props) => props.bbox.height}px;
+	top: ${(props) => props.bbox.top}px;
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
