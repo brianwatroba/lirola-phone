@@ -6,11 +6,11 @@ import Screen from './Screen';
 
 const Main = () => {
 	return (
-		<FlexContainer>
-			<Phone>
-				<Screen />
-			</Phone>
-		</FlexContainer>
+		// <FlexContainer>
+		<Phone>
+			<Screen />
+		</Phone>
+		// </FlexContainer>
 	);
 };
 

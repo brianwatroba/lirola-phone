@@ -1,42 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
+import styled from 'styled-components';
+import useBbox from '../hooks/useBbox';
 import './phone.css';
 
 const Phone = ({ children }) => {
-	const [screenPosition, setScreenPosition] = useState({});
-	const screenRect = useRef();
-
-	var resizeObserver = new ResizeObserver((entries) => {});
-
-	useEffect(() => {
-		const screenRectBoundingRect = screenRect.current.getBoundingClientRect();
-		setScreenPosition({
-			top: screenRectBoundingRect.top,
-			height: screenRectBoundingRect.height,
-			width: screenRectBoundingRect.width,
-		});
-
-		resizeObserver.observe(screenRect.current);
-	}, [resizeObserver]);
-
-	// const screenRect = useCallback((node) => {
-	// 	if (node !== null) {
-	// 		const screenRectBoundingRect = node.getBoundingClientRect();
-	// 		setScreenPosition({
-	// 			top: screenRectBoundingRect.top,
-	// 			height: screenRectBoundingRect.height,
-	// 			width: screenRectBoundingRect.width,
-	// 		});
-	// 	}
-	// var ro = new ResizeObserver((entries) => {
-	// 	for (let entry of entries) {
-	// 		const cr = entry.contentRect;
-	// 		console.log('Element:', entry.target);
-	// 		console.log(`Element size: ${cr.width}px x ${cr.height}px`);
-	// 		console.log(`Element padding: ${cr.top}px ; ${cr.left}px`);
-	// 	}
-	// });
-	// ro.observe(node);
-	// }, []);
+	const [bbox, ref] = useBbox();
+	const { height, width, top } = bbox;
 
 	return (
 		<div
@@ -45,12 +14,15 @@ const Phone = ({ children }) => {
 				height: '85vh',
 				backgroundColor: '#222',
 				textAlign: 'center',
+				alignContent: 'center',
+				display: 'flex',
+				justifyContent: 'center',
 			}}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				xmlnsXlink="http://www.w3.org/1999/xlink"
-				width="359"
+				width="100%"
 				height="100%"
 				fill="none"
 				viewBox="0 0 359 871"
@@ -724,7 +696,7 @@ const Phone = ({ children }) => {
 							y="208.237"
 							fill="#DBDBDB"
 							rx="2"
-							ref={screenRect}
+							ref={ref}
 						></rect>
 					</g>
 				</g>
@@ -1001,24 +973,24 @@ const Phone = ({ children }) => {
 					></image>
 				</defs>
 			</svg>
-			<div
-				style={{
-					position: 'absolute',
-					backgroundColor: 'green',
-					zIndex: '1000',
-					width: screenPosition.width,
-					height: screenPosition.height,
-					top: screenPosition.top,
-					marginLeft: 'auto',
-					marginRight: 'auto',
-					left: '0',
-					right: '0',
-				}}
-			>
+			<ScreenContainer top={50} width height>
 				{children}
-			</div>
+			</ScreenContainer>
 		</div>
 	);
 };
+
+const ScreenContainer = styled.div`
+	position: absolute;
+	background-color: green;
+	z-index: '1000';
+	width: ${(props) => props.width};
+	height: ${(props) => props.height};
+	top: ${(props) => props.top};
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+`;
 
 export default Phone;
