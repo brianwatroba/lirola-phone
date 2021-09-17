@@ -12,9 +12,9 @@ const Screen = () => {
 	return (
 		<Container>
 			<StatusBar>
-				<img src={batteryIcon} height="32" alt="battery" />
+				<img src={batteryIcon} style={{ height: '3vh' }} alt="battery" />
 				<Clock>{time}</Clock>
-				<img src={signalIcon} height="32" alt="signal" />
+				<img src={signalIcon} style={{ height: '3vh' }} alt="signal" />
 			</StatusBar>
 			<ScreenContent>
 				<ReadyText>Searching...</ReadyText>
@@ -62,7 +62,7 @@ const ScreenContent = styled.div`
 const Clock = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: 1.25vh;
+	font-size: 1vh;
 	color: #848484;
 `;
 
