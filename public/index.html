@@ -18,6 +18,27 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" hideLoader={hideLoader}></div>
+    <div id="loader" style="display: flex; height: 100vh; width: 100%; flex-direction: column; align-items: center;"> 
+      <div style="font-size: 3vh; margin-top: 25%; font-family: Tahoma; color: #BFBFBF">JESSE LIROA</div>
+      <img src="%PUBLIC_URL%/searchingForService.svg" style="margin-top: 30%" height="96px" width="96px">
+      <div class="searching">
+        <style>
+        .searching {
+          font-size: 5vh; 
+          font-family: Tahoma; 
+          color: #5A5A5A; 
+          animation: fade 1.5s ease-out infinite;
+        }
+          @keyframes fade {
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+          };
+        </style>
+        SEARCHING...
+      </div>
+    </div>
+
   </body>
 </html>

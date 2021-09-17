@@ -4,10 +4,12 @@ import phoneWallpaper from '../icons/phonewallpaper.png';
 import batteryIcon from '../icons/battery.png';
 import signalIcon from '../icons/signal.png';
 import dayjs from 'dayjs';
+import NumInput from './NumInput';
+import OptionsBar from './OptionsBar';
 // import localeData from 'dayjs/plugin/localeData';
 // dayjs.extend(localeData);
 
-const Screen = () => {
+const Screen = ({ inputOpen, entered }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return (
 		<Container>
@@ -19,11 +21,18 @@ const Screen = () => {
 			<ScreenContent>
 				<ReadyText>Searching...</ReadyText>
 			</ScreenContent>
+			{inputOpen && (
+				<Dialog>
+					<NumInput title={'TEXT TO:'} />
+					<OptionsBar left={'SEND'} right={'CANCEL'} />
+				</Dialog>
+			)}
 		</Container>
 	);
 };
 
 const Container = styled.div`
+	position: relative;
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -70,6 +79,17 @@ const ReadyText = styled.div`
 	font-size: 1.25vh;
 	color: #5a5a5a;
 	animation: ${FadeInOut} 2s ease-out infinite;
+`;
+
+const Dialog = styled.div`
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	height: 60%;
+	width: 100%;
+	flex-direction: column;
+	justify-content: end;
+	align-items: center;
 `;
 
 export default Screen;

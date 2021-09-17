@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import useBbox from '../hooks/useBbox';
 import './phone.css';
 
-const Phone = ({ children }) => {
+const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 	const [bbox, ref] = useBbox();
+
+	const handleNumKeyPress = (e) => {
+		if (!inputOpen) {
+			setInputOpen(true);
+		}
+	};
 
 	return (
 		<PhoneContainer>
@@ -51,7 +57,11 @@ const Phone = ({ children }) => {
 							transform="matrix(.9857 -.16848 .17897 .98386 73.29 74.602)"
 						></ellipse>
 					</g>
-					<g id="Keypad" style={{ mixBlendMode: 'hard-light' }}>
+					<g
+						id="Keypad"
+						style={{ mixBlendMode: 'hard-light' }}
+						onClick={handleNumKeyPress}
+					>
 						<g id="#">
 							<path
 								id="Rect - #"
