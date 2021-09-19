@@ -1,26 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import Phone from './Phone';
-
 import Screen from './Screen';
 
 const Main = () => {
+	const [inputOpen, setInputOpen] = useState(false);
+	const [entered, setEntered] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [loadingMessage, setLoadingMessage] = useState('');
+	const hideLoader = () => {
+		const loader = document.querySelector('#loader');
+		loader.style.display = 'none';
+	};
+	useEffect(() => {
+		hideLoader();
+	}, []);
 	return (
-		<FlexContainer>
-			<Phone>
-				<Screen />
-			</Phone>
-		</FlexContainer>
+		<Phone
+			setInputOpen={setInputOpen}
+			inputOpen={inputOpen}
+			setEntered={setEntered}
+			entered={entered}
+			loading={loading}
+			setLoading={setLoading}
+			loadingMessage={loadingMessage}
+			setLoadingMessage={setLoadingMessage}
+		>
+			<Screen
+				inputOpen={inputOpen}
+				entered={entered}
+				loading={loading}
+				loadingMessage={loadingMessage}
+			/>
+		</Phone>
 	);
 };
-
-const FlexContainer = styled.div`
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	height: 100%;
-	width: 100%;
-	background-color: #222;
-`;
 
 export default Main;
