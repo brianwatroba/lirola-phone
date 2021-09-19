@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NumInput = ({ title }) => {
+const NumInput = ({ title, entered }) => {
 	return (
 		<Container>
 			<Title>{title}</Title>
-			<NumEntered>18103330792</NumEntered>
+			<NumEntered>{entered}</NumEntered>
 		</Container>
 	);
 };

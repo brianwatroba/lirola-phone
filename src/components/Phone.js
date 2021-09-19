@@ -3,12 +3,74 @@ import styled from 'styled-components';
 import useBbox from '../hooks/useBbox';
 import './phone.css';
 
-const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
+const Phone = ({
+	children,
+	setInputOpen,
+	setEntered,
+	inputOpen,
+	entered,
+	loading,
+	setLoading,
+	loadingMessage,
+	setLoadingMessage,
+}) => {
 	const [bbox, ref] = useBbox();
 
 	const handleNumKeyPress = (e) => {
+		const value = e.target.id;
 		if (!inputOpen) {
 			setInputOpen(true);
+			console.log(entered);
+			setEntered((oldArray) => [...oldArray, value]);
+		} else {
+			console.log(entered);
+			if (entered.length < 11) setEntered((oldArray) => [...oldArray, value]);
+		}
+	};
+
+	const handleCancelPress = () => {
+		setLoading(false);
+		if (inputOpen) {
+			setInputOpen(false);
+			setEntered([]);
+		}
+	};
+
+	const handleOkPress = () => {
+		// call api to match code to
+		//if correct, change to redirect
+		// if not, change display to incorrect, with timeout to go back to ready
+	};
+
+	const handleBackspacePress = () => {
+		if (entered.length > 0) {
+			setEntered((oldArray) => oldArray.slice(0, -1));
+		} else {
+			setInputOpen(false);
+		}
+	};
+
+	const handleLinkPress = (e) => {
+		const redirect = (url) => {
+			setInputOpen(false);
+			setLoadingMessage('Redirecting');
+			setLoading(true);
+			setTimeout(() => {
+				window.location.replace(url);
+			}, 1200);
+		};
+		switch (e.target.id) {
+			case 'instagram':
+				redirect('https://www.instagram.com/jesselirola');
+				break;
+			case 'website':
+				redirect('https://www.jesselirola.com');
+				break;
+			case 'email':
+				redirect('mailto:jesse@jesselirola.com');
+				break;
+			default:
+				return;
 		}
 	};
 
@@ -60,18 +122,18 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 					<g
 						id="Keypad"
 						style={{ mixBlendMode: 'hard-light' }}
-						onClick={handleNumKeyPress}
+						onClick={(e) => handleNumKeyPress(e)}
 					>
 						<g id="#">
 							<path
-								id="Rect - #"
+								id="#"
 								fill="#323232"
 								stroke="url(#paint1_linear)"
 								strokeWidth="2"
 								d="M230.9 783.719a9 9 0 019-9h57.549c8.638 0 15.64 7.002 15.64 15.64 0 12.313-9.982 22.296-22.296 22.296H239.9a9 9 0 01-9-9v-19.936z"
 							></path>
 							<text
-								id="#_2"
+								id="#"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -80,14 +142,14 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="278.294" y="799.873">
+								<tspan id="#" x="278.294" y="799.873">
 									#
 								</tspan>
 							</text>
 						</g>
 						<g id="0">
 							<rect
-								id="Rect - 0"
+								id="0"
 								width="82.189"
 								height="37.936"
 								x="139.158"
@@ -98,7 +160,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								rx="9"
 							></rect>
 							<text
-								id="0_2"
+								id="0"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -107,21 +169,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="191.407" y="799.873">
+								<tspan id="0" x="191.407" y="799.873">
 									0
 								</tspan>
 							</text>
 						</g>
 						<g id="*">
 							<path
-								id="Rect - *"
+								id="*"
 								fill="#323232"
 								stroke="url(#paint3_linear)"
 								strokeWidth="2"
 								d="M47.411 790.359c0-8.638 7.002-15.64 15.64-15.64h58.628a9 9 0 019 9v19.936a9 9 0 01-9 9H69.707c-12.314 0-22.296-9.983-22.296-22.296z"
 							></path>
 							<text
-								id="*_2"
+								id="*"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -130,12 +192,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="99.799" y="809.663">
+								<tspan id="*" x="99.799" y="809.663">
 									*
 								</tspan>
 							</text>
 							<text
-								id="+"
+								id="*"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -144,21 +206,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="77.354" y="794.374">
+								<tspan id="*" x="77.354" y="794.374">
 									+
 								</tspan>
 							</text>
 						</g>
 						<g id="9">
 							<path
-								id="Rect - 9"
+								id="9"
 								fill="#323232"
 								stroke="url(#paint4_linear)"
 								strokeWidth="2"
 								d="M230.9 731.905a9 9 0 019-9h57.549c8.638 0 15.64 7.002 15.64 15.64 0 12.314-9.982 22.296-22.296 22.296H239.9a9 9 0 01-9-9v-19.936z"
 							></path>
 							<text
-								id="9_2"
+								id="9"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -167,12 +229,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="278.294" y="749.141">
+								<tspan id="9" x="278.294" y="749.141">
 									9
 								</tspan>
 							</text>
 							<text
-								id="wxyz"
+								id="9"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -181,14 +243,15 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="246.153" y="747.968">
+								<tspan id="9" x="246.153" y="747.968">
 									wxyz
 								</tspan>
 							</text>
 						</g>
 						<g id="8">
+							å
 							<rect
-								id="Rect - 8"
+								id="8"
 								width="82.189"
 								height="37.936"
 								x="139.158"
@@ -199,7 +262,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								rx="9"
 							></rect>
 							<text
-								id="8_2"
+								id="8"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -208,12 +271,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="191.407" y="749.141">
+								<tspan id="8" x="191.407" y="749.141">
 									8
 								</tspan>
 							</text>
 							<text
-								id="tuv"
+								id="8"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -222,21 +285,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="164.379" y="747.968">
+								<tspan id="8" x="164.379" y="747.968">
 									tuv
 								</tspan>
 							</text>
 						</g>
 						<g id="7">
 							<path
-								id="Rect - 7"
+								id="7"
 								fill="#323232"
 								stroke="url(#paint6_linear)"
 								strokeWidth="2"
 								d="M47.411 738.545c0-8.638 7.002-15.64 15.64-15.64h58.628a9 9 0 019 9v19.936a9 9 0 01-9 9H69.707c-12.314 0-22.296-9.982-22.296-22.296z"
 							></path>
 							<text
-								id="7_2"
+								id="7"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -245,12 +308,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="100.202" y="749.141">
+								<tspan id="7" x="100.202" y="749.141">
 									7
 								</tspan>
 							</text>
 							<text
-								id="pqrs"
+								id="7"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -259,21 +322,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="69.279" y="747.968">
+								<tspan id="7" x="69.279" y="747.968">
 									pqrs
 								</tspan>
 							</text>
 						</g>
 						<g id="6">
 							<path
-								id="Rect - 6"
+								id="6"
 								fill="#323232"
 								stroke="url(#paint7_linear)"
 								strokeWidth="2"
 								d="M230.9 680.101a9 9 0 019-9h57.549c8.638 0 15.64 7.002 15.64 15.64 0 12.314-9.982 22.296-22.296 22.296H239.9a9 9 0 01-9-9v-19.936z"
 							></path>
 							<text
-								id="6_2"
+								id="6"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -282,12 +345,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="278.294" y="696.253">
+								<tspan id="6" x="278.294" y="696.253">
 									6
 								</tspan>
 							</text>
 							<text
-								id="mno"
+								id="6"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -296,14 +359,14 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="247.489" y="695.074">
+								<tspan id="6" x="247.489" y="695.074">
 									mno
 								</tspan>
 							</text>
 						</g>
 						<g id="5">
 							<rect
-								id="Rect - 5"
+								id="5"
 								width="82.189"
 								height="37.936"
 								x="139.158"
@@ -314,7 +377,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								rx="9"
 							></rect>
 							<text
-								id="5_2"
+								id="5"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -323,12 +386,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="191.407" y="696.253">
+								<tspan id="5" x="191.407" y="696.253">
 									5
 								</tspan>
 							</text>
 							<text
-								id="jkl"
+								id="5"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -337,21 +400,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="166.939" y="695.074">
+								<tspan id="5" x="166.939" y="695.074">
 									jkl
 								</tspan>
 							</text>
 						</g>
 						<g id="4">
 							<path
-								id="Rect - 4"
+								id="4"
 								fill="#323232"
 								stroke="url(#paint9_linear)"
 								strokeWidth="2"
 								d="M47.411 686.741c0-8.638 7.002-15.64 15.64-15.64h58.628a9 9 0 019 9v19.936a9 9 0 01-9 9H69.707c-12.314 0-22.296-9.982-22.296-22.296z"
 							></path>
 							<text
-								id="4_2"
+								id="4"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -360,12 +423,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="100.202" y="696.253">
+								<tspan id="4" x="100.202" y="696.253">
 									4
 								</tspan>
 							</text>
 							<text
-								id="ghi"
+								id="4"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -374,21 +437,21 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="73.287" y="695.074">
+								<tspan id="4" x="73.287" y="695.074">
 									ghi
 								</tspan>
 							</text>
 						</g>
 						<g id="3">
 							<path
-								id="Rect - 3"
+								id="3"
 								fill="#323232"
 								stroke="url(#paint10_linear)"
 								strokeWidth="2"
 								d="M230.9 628.294a9 9 0 019-9h57.099c8.886 0 16.09 7.204 16.09 16.09 0 12.661-10.264 22.925-22.925 22.925H239.9a9 9 0 01-9-9v-21.015z"
 							></path>
 							<text
-								id="3_2"
+								id="3"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -397,12 +460,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="279.376" y="644.447">
+								<tspan id="3" x="279.376" y="644.447">
 									3
 								</tspan>
 							</text>
 							<text
-								id="def"
+								id="3"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -411,14 +474,14 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="252.016" y="644.348">
+								<tspan id="3" x="252.016" y="644.348">
 									def
 								</tspan>
 							</text>
 						</g>
 						<g id="2">
 							<rect
-								id="Rect - 2"
+								id="2"
 								width="82.189"
 								height="39.015"
 								x="139.158"
@@ -429,7 +492,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								rx="9"
 							></rect>
 							<text
-								id="2_2"
+								id="2"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -438,12 +501,12 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="191.407" y="644.447">
+								<tspan id="2" x="191.407" y="644.447">
 									2
 								</tspan>
 							</text>
 							<text
-								id="abc"
+								id="2"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -452,21 +515,22 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="300"
 								letterSpacing="0em"
 							>
-								<tspan x="162.515" y="643.426">
+								<tspan id="2" x="162.515" y="643.426">
 									abc
 								</tspan>
 							</text>
 						</g>
 						<g id="1">
 							<path
-								id="Rect - 1"
+								className="test1"
+								id="1"
 								fill="#323232"
 								stroke="url(#paint12_linear)"
 								strokeWidth="2"
 								d="M47.411 635.377c0-8.886 7.204-16.09 16.09-16.09h58.178a9 9 0 019 9v21.015a9 9 0 01-9 9H70.337c-12.662 0-22.926-10.264-22.926-22.925z"
 							></path>
 							<text
-								id="1_2"
+								id="1"
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
@@ -475,19 +539,20 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								fontWeight="bold"
 								letterSpacing="0em"
 							>
-								<tspan x="100.202" y="644.447">
+								<tspan id="1" x="100.202" y="644.447">
 									1
 								</tspan>
 							</text>
 						</g>
 					</g>
 					<g id="Link Buttons">
-						<g id="instagram">
-							<g id="Ellipse 22">
+						<g id="instagram" onClick={(e) => handleLinkPress(e)}>
+							<g id="instagram">
 								<mask id="path-39-inside-1" fill="#fff">
 									<path d="M52.571 545.976c-1.93 0-2.896 0-3.495.701-.599.702-.462 1.562-.188 3.282 1.099 6.89 5.04 13.643 11.65 19.914 7.567 7.177 18.453 13.554 31.933 18.712.82.314 1.23.471 1.666.443.436-.028.83-.24 1.616-.664l40.311-21.75c3.204-1.729 4.806-2.593 4.834-3.753.029-1.16-1.66-2.182-5.038-4.226-1.846-1.117-3.448-2.315-4.78-3.578-1.746-1.656-3.002-3.401-3.745-5.189-.893-2.147-1.339-3.22-1.843-3.556-.504-.336-1.323-.336-2.96-.336h-69.96z"></path>
 								</mask>
 								<path
+									id="instagram"
 									fill="#C4C4C4"
 									stroke="url(#paint13_linear)"
 									strokeWidth="10"
@@ -495,31 +560,28 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 									mask="url(#path-39-inside-1)"
 								></path>
 							</g>
-							<g
-								id="noun_instagram_3350818 1"
-								fill="#616161"
-								clipPath="url(#clip0)"
-							>
+							<g id="instagram" fill="#616161" clipPath="url(#clip0)">
 								<path
-									id="Vector"
+									id="instagram"
 									d="M99.056 554.611H87.67a2.41 2.41 0 00-2.401 2.402V568.4a2.409 2.409 0 002.401 2.402h11.387a2.409 2.409 0 002.402-2.402v-11.387a2.408 2.408 0 00-2.402-2.402zm1.053 13.789a1.052 1.052 0 01-1.053 1.052H87.67a1.053 1.053 0 01-1.052-1.052v-11.387a1.051 1.051 0 011.052-1.052h11.387a1.05 1.05 0 011.053 1.052V568.4z"
 								></path>
 								<path
-									id="Vector_2"
+									id="instagram"
 									d="M93.363 558.659a4.046 4.046 0 00-3.97 4.837 4.045 4.045 0 005.519 2.95 4.043 4.043 0 002.498-3.74 4.05 4.05 0 00-4.047-4.047zm0 6.746a2.695 2.695 0 01-2.493-1.666 2.698 2.698 0 112.493 1.666z"
 								></path>
 								<path
-									id="Vector_3"
+									id="instagram"
 									d="M97.748 559.333a1.012 1.012 0 100-2.024 1.012 1.012 0 000 2.024z"
 								></path>
 							</g>
 						</g>
-						<g id="email">
-							<g id="Ellipse 23">
+						<g id="email" onClick={(e) => handleLinkPress(e)}>
+							<g id="email">
 								<mask id="path-43-inside-2" fill="#fff">
 									<path d="M105.769 589.141c-3.357 1.896-5.036 2.844-4.88 4.165.156 1.322 1.979 1.844 5.624 2.889 19.599 5.62 42.379 8.782 65.86 9.112 1.87.026 2.806.04 3.401-.546.596-.587.598-1.531.601-3.419l.056-29.186c.003-1.871.005-2.806-.552-3.388-.557-.582-1.52-.621-3.446-.701-7.446-.307-14.596-1.459-20.737-3.349-.872-.268-1.308-.402-1.718-.358-.409.045-.789.259-1.548.688l-42.661 24.093z"></path>
 								</mask>
 								<path
+									id="email"
 									fill="#C4C4C4"
 									stroke="url(#paint14_linear)"
 									strokeWidth="10"
@@ -527,26 +589,23 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 									mask="url(#path-43-inside-2)"
 								></path>
 							</g>
-							<g
-								id="noun_Email_1046988 1"
-								clipPath="url(#clip1)"
-								opacity="0.75"
-							>
-								<g id="Group">
+							<g id="email" clipPath="url(#clip1)" opacity="0.75">
+								<g id="Group" id="email">
 									<path
-										id="Vector_4"
+										id="email"
 										fill="#3A3A3A"
 										d="M143.595 577.584c-.905 0-1.651.895-1.651 1.982v8.807c0 1.087.746 1.982 1.651 1.982h13.945c.906 0 1.652-.895 1.652-1.982v-8.807c0-1.087-.746-1.982-1.652-1.982h-13.945zm.402 1.321h13.142l-6.319 6.317c-.098.098-.406.098-.505 0l-6.318-6.317zm-.952.764l4.472 4.473-4.472 4.163v-8.636zm15.046 0v8.636l-4.473-4.163 4.473-4.473zm-9.714 5.333l1.233 1.231c.562.562 1.354.562 1.915 0l1.233-1.231 4.324 4.032h-13.028l4.323-4.032z"
 									></path>
 								</g>
 							</g>
 						</g>
-						<g id="website">
-							<g id="Ellipse 24">
+						<g id="website" onClick={(e) => handleLinkPress(e)}>
+							<g id="website">
 								<mask id="path-45-inside-3" fill="#fff">
 									<path d="M252.576 589.142c3.357 1.895 5.036 2.843 4.88 4.165-.156 1.321-1.979 1.844-5.625 2.889-19.598 5.62-42.378 8.781-65.859 9.112-1.871.026-2.806.039-3.402-.547-.595-.586-.597-1.53-.6-3.418l-.055-28.785c-.004-1.871-.005-2.807.552-3.389.558-.582 1.521-.621 3.446-.698 7.649-.309 14.994-1.491 21.297-3.435.871-.268 1.306-.403 1.716-.358.41.044.79.258 1.549.687l42.101 23.777z"></path>
 								</mask>
 								<path
+									id="website"
 									fill="#C4C4C4"
 									stroke="url(#paint15_linear)"
 									strokeWidth="10"
@@ -554,7 +613,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 									mask="url(#path-45-inside-3)"
 								></path>
 							</g>
-							<g id="noun_website_4150876 1" opacity="0.75">
+							<g id="website" opacity="0.75">
 								<path
 									id="Vector_5"
 									fill="#3A3A3A"
@@ -562,7 +621,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								></path>
 							</g>
 						</g>
-						<g id="back">
+						<g id="back" onClick={handleBackspacePress}>
 							<g id="Ellipse 21">
 								<mask id="path-47-inside-4" fill="#fff">
 									<path d="M305.772 545.976c1.931 0 2.896 0 3.495.701.599.702.462 1.562.188 3.282-1.099 6.89-5.04 13.643-11.651 19.914-7.567 7.177-18.452 13.554-31.932 18.712-.82.314-1.231.471-1.667.443-.436-.028-.829-.24-1.615-.664l-40.31-21.749c-3.204-1.729-4.806-2.593-4.834-3.753-.029-1.16 1.66-2.182 5.038-4.226 1.846-1.117 3.449-2.316 4.781-3.579 1.745-1.656 3.001-3.401 3.745-5.189.892-2.147 1.339-3.22 1.843-3.556.504-.336 1.322-.336 2.959-.336h69.96z"></path>
@@ -625,7 +684,7 @@ const Phone = ({ children, setInputOpen, setEntered, inputOpen }) => {
 								></path>
 							</g>
 						</g>
-						<g id="cancel">
+						<g id="cancel" onClick={handleCancelPress}>
 							<path
 								id="Rectangle 11"
 								fill="#FDFDFD"

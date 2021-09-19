@@ -9,7 +9,7 @@ import OptionsBar from './OptionsBar';
 // import localeData from 'dayjs/plugin/localeData';
 // dayjs.extend(localeData);
 
-const Screen = ({ inputOpen, entered }) => {
+const Screen = ({ inputOpen, entered, loading, loadingMessage }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return (
 		<Container>
@@ -19,11 +19,19 @@ const Screen = ({ inputOpen, entered }) => {
 				<img src={signalIcon} style={{ height: '3vh' }} alt="signal" />
 			</StatusBar>
 			<ScreenContent>
-				<ReadyText>Searching...</ReadyText>
+				{!loading && <ReadyText>Ready</ReadyText>}
+				{loading && (
+					<>
+						<StatusText>{loadingMessage}</StatusText>
+						<ProgressBar>
+							<ProgressShown />
+						</ProgressBar>
+					</>
+				)}
 			</ScreenContent>
 			{inputOpen && (
 				<Dialog>
-					<NumInput title={'TEXT TO:'} />
+					<NumInput title={'ENTERING:'} entered={entered} />
 					<OptionsBar left={'SEND'} right={'CANCEL'} />
 				</Dialog>
 			)}
@@ -48,6 +56,32 @@ const FadeInOut = keyframes`
 	0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+`;
+
+const ProgressAnimation = keyframes`
+	0% { width: 0% }
+	10% { width: 10% }
+	20% { width: 20% }
+	30% { width: 30% }
+	40% { width: 40% }
+	50% { width: 50% }
+	60% { width: 60% }
+	70% { width: 70% }
+	80% { width: 80% }
+	90% { width: 90% }
+	100% { width: 100% }
+`;
+
+const ProgressBar = styled.div`
+	height: 10%;
+	width: 80%;
+	border: 0.3vh solid #5a5a5a;
+`;
+
+const ProgressShown = styled.div`
+	height: 100%;
+	background-color: #5a5a5a;
+	animation: ${ProgressAnimation} 1.5s;
 `;
 
 const StatusBar = styled.div`
@@ -90,6 +124,12 @@ const Dialog = styled.div`
 	flex-direction: column;
 	justify-content: end;
 	align-items: center;
+`;
+
+const StatusText = styled.div`
+	font-size: 1.5vh;
+	color: #5a5a5a;
+	margin-bottom: 10%;
 `;
 
 export default Screen;

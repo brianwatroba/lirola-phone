@@ -4,7 +4,9 @@ import Screen from './Screen';
 
 const Main = () => {
 	const [inputOpen, setInputOpen] = useState(false);
-	const [entered, setEntered] = useState();
+	const [entered, setEntered] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [loadingMessage, setLoadingMessage] = useState('');
 	const hideLoader = () => {
 		const loader = document.querySelector('#loader');
 		loader.style.display = 'none';
@@ -17,8 +19,18 @@ const Main = () => {
 			setInputOpen={setInputOpen}
 			inputOpen={inputOpen}
 			setEntered={setEntered}
+			entered={entered}
+			loading={loading}
+			setLoading={setLoading}
+			loadingMessage={loadingMessage}
+			setLoadingMessage={setLoadingMessage}
 		>
-			<Screen inputOpen={inputOpen} entered={entered} />
+			<Screen
+				inputOpen={inputOpen}
+				entered={entered}
+				loading={loading}
+				loadingMessage={loadingMessage}
+			/>
 		</Phone>
 	);
 };
