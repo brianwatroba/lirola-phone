@@ -7,6 +7,7 @@ const Main = () => {
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState('');
+	const [screenMessage, setScreenMessage] = useState('Searching...');
 	const hideLoader = () => {
 		const loader = document.querySelector('#loader');
 		loader.style.display = 'none';
@@ -24,12 +25,15 @@ const Main = () => {
 			setLoading={setLoading}
 			loadingMessage={loadingMessage}
 			setLoadingMessage={setLoadingMessage}
+			screenMessage={screenMessage}
+			setScreenMessage={setScreenMessage}
 		>
 			<Screen
 				inputOpen={inputOpen}
 				entered={entered}
 				loading={loading}
 				loadingMessage={loadingMessage}
+				screenMessage={screenMessage}
 			/>
 		</Phone>
 	);

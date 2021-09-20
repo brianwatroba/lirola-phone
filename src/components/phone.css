@@ -1,13 +1,19 @@
-.numbutton:hover {
+.button:hover {
 	/* fill: red; */
 	cursor: pointer;
 }
 
-.numbutton:active > path {
-	/* fill: #3e8e41; */
-	-webkit-box-shadow: inset 0px 0px 10px #fff;
+/* .button:active > text { */
+/* fill: #3e8e41; */
+/* -webkit-box-shadow: inset 0px 0px 10px #fff;
 	-moz-box-shadow: inset 0px 0px 10px #fff;
-	filter: drop-shadow(2px 2px 2px #3e8e41);
+	fill: #3e8e41; */
+/* } */
 
-	/* transform: translateY(2px); */
-}
+/* .button:active { */
+/* fill: #3e8e41; */
+/* -webkit-box-shadow: inset 0px 0px 10px #fff;
+	-moz-box-shadow: inset 0px 0px 10px #fff;
+	fill: #3e8e41; */
+/* transform: translateY(1px); */
+/* } */

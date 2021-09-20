@@ -9,7 +9,13 @@ import OptionsBar from './OptionsBar';
 // import localeData from 'dayjs/plugin/localeData';
 // dayjs.extend(localeData);
 
-const Screen = ({ inputOpen, entered, loading, loadingMessage }) => {
+const Screen = ({
+	inputOpen,
+	entered,
+	loading,
+	loadingMessage,
+	screenMessage,
+}) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return (
 		<Container>
@@ -19,7 +25,7 @@ const Screen = ({ inputOpen, entered, loading, loadingMessage }) => {
 				<img src={signalIcon} style={{ height: '3vh' }} alt="signal" />
 			</StatusBar>
 			<ScreenContent>
-				{!loading && <ReadyText>Ready</ReadyText>}
+				{!loading && <ReadyText>{screenMessage}</ReadyText>}
 				{loading && (
 					<>
 						<StatusText>{loadingMessage}</StatusText>
@@ -32,7 +38,7 @@ const Screen = ({ inputOpen, entered, loading, loadingMessage }) => {
 			{inputOpen && (
 				<Dialog>
 					<NumInput title={'ENTERING:'} entered={entered} />
-					<OptionsBar left={'SEND'} right={'CANCEL'} />
+					<OptionsBar left={'OK'} right={'CANCEL'} />
 				</Dialog>
 			)}
 		</Container>

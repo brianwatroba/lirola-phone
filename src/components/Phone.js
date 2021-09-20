@@ -13,6 +13,8 @@ const Phone = ({
 	setLoading,
 	loadingMessage,
 	setLoadingMessage,
+	screenMessage,
+	setScreenMessage,
 }) => {
 	const [bbox, ref] = useBbox();
 
@@ -30,16 +32,25 @@ const Phone = ({
 
 	const handleCancelPress = () => {
 		setLoading(false);
+		setEntered([]);
 		if (inputOpen) {
 			setInputOpen(false);
-			setEntered([]);
 		}
 	};
 
 	const handleOkPress = () => {
-		// call api to match code to
-		//if correct, change to redirect
-		// if not, change display to incorrect, with timeout to go back to ready
+		const exists = false;
+
+		if (inputOpen) {
+			if (exists) {
+				redirect('https://www.apple.com');
+			} else {
+				setInputOpen(false);
+				setEntered([]);
+				setScreenMessage('INVALID NUMBER');
+				setTimeout(() => setScreenMessage('Searching...'), 2000);
+			}
+		}
 	};
 
 	const handleBackspacePress = () => {
@@ -51,14 +62,6 @@ const Phone = ({
 	};
 
 	const handleLinkPress = (e) => {
-		const redirect = (url) => {
-			setInputOpen(false);
-			setLoadingMessage('Redirecting');
-			setLoading(true);
-			setTimeout(() => {
-				window.location.replace(url);
-			}, 1200);
-		};
 		switch (e.target.id) {
 			case 'instagram':
 				redirect('https://www.instagram.com/jesselirola');
@@ -72,6 +75,17 @@ const Phone = ({
 			default:
 				return;
 		}
+	};
+
+	const redirect = (url) => {
+		setInputOpen(false);
+		setLoadingMessage('Redirecting');
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+			setScreenMessage('Searching...');
+			window.location.href = url;
+		}, 1200);
 	};
 
 	return (
@@ -124,7 +138,7 @@ const Phone = ({
 						style={{ mixBlendMode: 'hard-light' }}
 						onClick={(e) => handleNumKeyPress(e)}
 					>
-						<g id="#">
+						<g id="#" className="button">
 							<path
 								id="#"
 								fill="#323232"
@@ -147,7 +161,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="0">
+						<g id="0" className="button">
 							<rect
 								id="0"
 								width="82.189"
@@ -174,7 +188,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="*">
+						<g id="*" className="button">
 							<path
 								id="*"
 								fill="#323232"
@@ -211,7 +225,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="9">
+						<g id="9" className="button">
 							<path
 								id="9"
 								fill="#323232"
@@ -248,7 +262,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="8">
+						<g id="8" className="button">
 							å
 							<rect
 								id="8"
@@ -290,7 +304,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="7">
+						<g id="7" className="button">
 							<path
 								id="7"
 								fill="#323232"
@@ -327,7 +341,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="6">
+						<g id="6" className="button">
 							<path
 								id="6"
 								fill="#323232"
@@ -364,7 +378,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="5">
+						<g id="5" className="button">
 							<rect
 								id="5"
 								width="82.189"
@@ -405,7 +419,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="4">
+						<g id="4" className="button">
 							<path
 								id="4"
 								fill="#323232"
@@ -442,7 +456,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="3">
+						<g id="3" className="button">
 							<path
 								id="3"
 								fill="#323232"
@@ -479,7 +493,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="2">
+						<g id="2" className="button">
 							<rect
 								id="2"
 								width="82.189"
@@ -520,7 +534,7 @@ const Phone = ({
 								</tspan>
 							</text>
 						</g>
-						<g id="1">
+						<g id="1" className="button">
 							<path
 								className="test1"
 								id="1"
@@ -546,7 +560,11 @@ const Phone = ({
 						</g>
 					</g>
 					<g id="Link Buttons">
-						<g id="instagram" onClick={(e) => handleLinkPress(e)}>
+						<g
+							id="instagram"
+							className="button"
+							onClick={(e) => handleLinkPress(e)}
+						>
 							<g id="instagram">
 								<mask id="path-39-inside-1" fill="#fff">
 									<path d="M52.571 545.976c-1.93 0-2.896 0-3.495.701-.599.702-.462 1.562-.188 3.282 1.099 6.89 5.04 13.643 11.65 19.914 7.567 7.177 18.453 13.554 31.933 18.712.82.314 1.23.471 1.666.443.436-.028.83-.24 1.616-.664l40.311-21.75c3.204-1.729 4.806-2.593 4.834-3.753.029-1.16-1.66-2.182-5.038-4.226-1.846-1.117-3.448-2.315-4.78-3.578-1.746-1.656-3.002-3.401-3.745-5.189-.893-2.147-1.339-3.22-1.843-3.556-.504-.336-1.323-.336-2.96-.336h-69.96z"></path>
@@ -575,7 +593,11 @@ const Phone = ({
 								></path>
 							</g>
 						</g>
-						<g id="email" onClick={(e) => handleLinkPress(e)}>
+						<g
+							id="email"
+							className="button"
+							onClick={(e) => handleLinkPress(e)}
+						>
 							<g id="email">
 								<mask id="path-43-inside-2" fill="#fff">
 									<path d="M105.769 589.141c-3.357 1.896-5.036 2.844-4.88 4.165.156 1.322 1.979 1.844 5.624 2.889 19.599 5.62 42.379 8.782 65.86 9.112 1.87.026 2.806.04 3.401-.546.596-.587.598-1.531.601-3.419l.056-29.186c.003-1.871.005-2.806-.552-3.388-.557-.582-1.52-.621-3.446-.701-7.446-.307-14.596-1.459-20.737-3.349-.872-.268-1.308-.402-1.718-.358-.409.045-.789.259-1.548.688l-42.661 24.093z"></path>
@@ -599,7 +621,11 @@ const Phone = ({
 								</g>
 							</g>
 						</g>
-						<g id="website" onClick={(e) => handleLinkPress(e)}>
+						<g
+							id="website"
+							className="button"
+							onClick={(e) => handleLinkPress(e)}
+						>
 							<g id="website">
 								<mask id="path-45-inside-3" fill="#fff">
 									<path d="M252.576 589.142c3.357 1.895 5.036 2.843 4.88 4.165-.156 1.321-1.979 1.844-5.625 2.889-19.598 5.62-42.378 8.781-65.859 9.112-1.871.026-2.806.039-3.402-.547-.595-.586-.597-1.53-.6-3.418l-.055-28.785c-.004-1.871-.005-2.807.552-3.389.558-.582 1.521-.621 3.446-.698 7.649-.309 14.994-1.491 21.297-3.435.871-.268 1.306-.403 1.716-.358.41.044.79.258 1.549.687l42.101 23.777z"></path>
@@ -621,7 +647,7 @@ const Phone = ({
 								></path>
 							</g>
 						</g>
-						<g id="back" onClick={handleBackspacePress}>
+						<g id="back" className="button" onClick={handleBackspacePress}>
 							<g id="Ellipse 21">
 								<mask id="path-47-inside-4" fill="#fff">
 									<path d="M305.772 545.976c1.931 0 2.896 0 3.495.701.599.702.462 1.562.188 3.282-1.099 6.89-5.04 13.643-11.651 19.914-7.567 7.177-18.452 13.554-31.932 18.712-.82.314-1.231.471-1.667.443-.436-.028-.829-.24-1.615-.664l-40.31-21.749c-3.204-1.729-4.806-2.593-4.834-3.753-.029-1.16 1.66-2.182 5.038-4.226 1.846-1.117 3.449-2.316 4.781-3.579 1.745-1.656 3.001-3.401 3.745-5.189.892-2.147 1.339-3.22 1.843-3.556.504-.336 1.322-.336 2.959-.336h69.96z"></path>
@@ -668,7 +694,7 @@ const Phone = ({
 								></path>
 							</g>
 						</g>
-						<g id="ok">
+						<g id="ok" onClick={handleOkPress}>
 							<path
 								id="Rectangle 16"
 								fill="#FDFDFD"
