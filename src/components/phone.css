@@ -1,19 +1,25 @@
+@keyframes lightUp {
+	0% {
+		fill: #3e8e41;
+	}
+
+	100.0% {
+		fill: red;
+	}
+}
+
 .button:hover {
 	/* fill: red; */
 	cursor: pointer;
 }
 
-/* .button:active > text { */
-/* fill: #3e8e41; */
-/* -webkit-box-shadow: inset 0px 0px 10px #fff;
-	-moz-box-shadow: inset 0px 0px 10px #fff;
-	fill: #3e8e41; */
-/* } */
+.button:active > text {
+	animation: lightUp 2s forwards linear;
+	transform: translateY(1px);
+}
 
-/* .button:active { */
-/* fill: #3e8e41; */
-/* -webkit-box-shadow: inset 0px 0px 10px #fff;
-	-moz-box-shadow: inset 0px 0px 10px #fff;
-	fill: #3e8e41; */
-/* transform: translateY(1px); */
-/* } */
+.button {
+	animation: lightUp 2s forwards linear;
+
+	transform: translateY(1px);
+}

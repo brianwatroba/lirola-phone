@@ -15,6 +15,7 @@ const Phone = ({
 	setLoadingMessage,
 	screenMessage,
 	setScreenMessage,
+	setCameraOpen,
 }) => {
 	const [bbox, ref] = useBbox();
 
@@ -75,6 +76,10 @@ const Phone = ({
 			default:
 				return;
 		}
+	};
+
+	const handleCameraPress = () => {
+		setCameraOpen((prev) => !prev);
 	};
 
 	const redirect = (url) => {
@@ -676,7 +681,7 @@ const Phone = ({
 						</g>
 					</g>
 					<g id="Control Buttons">
-						<g id="camera" className="button">
+						<g id="camera" className="button" onClick={handleCameraPress}>
 							<g id="Rectangle 21">
 								<mask id="path-49-inside-5" fill="#fff">
 									<path d="M138.158 506.321c0-4.714 0-7.071 1.465-8.536 1.464-1.464 3.821-1.464 8.535-1.464h64.189c4.714 0 7.071 0 8.536 1.464 1.464 1.465 1.464 3.822 1.464 8.536v26.126c0 9.428 0 14.142-2.929 17.071-2.928 2.929-7.643 2.929-17.071 2.929h-44.189c-9.428 0-14.142 0-17.071-2.929-2.929-2.929-2.929-7.643-2.929-17.071v-26.126z"></path>
