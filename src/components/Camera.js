@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Camera = () => {
+	const containerRef = useRef(null);
 	const videoRef = useRef(null);
 	const photoRef = useRef(null);
 	const [hasPhoto, setHasPhoto] = useState(false);
@@ -9,7 +10,7 @@ const Camera = () => {
 	const getVideo = () => {
 		navigator.mediaDevices
 			.getUserMedia({
-				video: { height: 325, facingMode: 'user' },
+				video: { facingMode: 'user' },
 				audio: false,
 			})
 			.then((stream) => {
@@ -22,28 +23,31 @@ const Camera = () => {
 
 	const takePhoto = () => {
 		setHasPhoto(true);
-		const width = 414;
-		const height = width / (16 / 9);
+		const width = containerRef.current.clientWidth;
+		const height = containerRef.current.clientHeight;
+
+		console.log(containerRef);
 
 		let video = videoRef.current;
 		let photo = photoRef.current;
+		console.log(containerRef);
 
 		photo.width = width;
 		photo.height = height;
 
 		let ctx = photo.getContext('2d');
-		ctx.drawImage(video, 0, 0, width, height);
+		ctx.drawImage(video, 30, 0, 100, 100, 0, 0, 100, 100);
 	};
 
 	useEffect(() => {
 		getVideo();
-	}, [videoRef]);
+	}, [videoRef, photoRef]);
 
 	return (
-		<Container>
-			<canvas ref={photoRef}></canvas>
+		<Container ref={containerRef}>
+			<canvas ref={photoRef} hidden={!hasPhoto}></canvas>
 
-			<Video ref={videoRef} onClick={takePhoto} />
+			<Video ref={videoRef} onClick={takePhoto} hidden={hasPhoto} />
 		</Container>
 	);
 };
@@ -55,7 +59,7 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	// overflow: hidden;
+	overflow: hidden;
 	text-align: center;
 `;
 
