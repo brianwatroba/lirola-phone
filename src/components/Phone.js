@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useBbox from '../hooks/useBbox';
 import './phone.css';
+const axios = require('axios').default;
 
 const Phone = ({
 	children,
@@ -31,7 +32,7 @@ const Phone = ({
 		}
 	};
 
-	const handleCancelPress = () => {
+	const handleCancelPress = async () => {
 		setLoading(false);
 		setEntered([]);
 		if (inputOpen) {
@@ -39,13 +40,12 @@ const Phone = ({
 		}
 	};
 
-	const handleOkPress = () => {
-		const exists = false;
-
+	const handleOkPress = async () => {
 		if (inputOpen) {
-			if (exists) {
-				redirect('https://www.apple.com');
-			} else {
+			try {
+				const url = await getPdfUrl(entered.join(''));
+				redirect(url);
+			} catch (error) {
 				setInputOpen(false);
 				setEntered([]);
 				setScreenMessage('INVALID NUMBER');
@@ -79,7 +79,7 @@ const Phone = ({
 	};
 
 	const handleCameraPress = () => {
-		setCameraOpen((prev) => !prev);
+		// setCameraOpen((prev) => !prev);
 	};
 
 	const redirect = (url) => {
@@ -91,6 +91,13 @@ const Phone = ({
 			setScreenMessage('Searching...');
 			window.location.href = url;
 		}, 1200);
+	};
+
+	const getPdfUrl = async (code) => {
+		const response = await axios.post(`/.netlify/functions/getPdfUrl`, {
+			code,
+		});
+		return response.data;
 	};
 
 	return (
@@ -681,7 +688,7 @@ const Phone = ({
 						</g>
 					</g>
 					<g id="Control Buttons">
-						<g id="camera" className="button">
+						<g id="camera" className="button" onClick={handleCameraPress}>
 							<g id="Rectangle 21">
 								<mask id="path-49-inside-5" fill="#fff">
 									<path d="M138.158 506.321c0-4.714 0-7.071 1.465-8.536 1.464-1.464 3.821-1.464 8.535-1.464h64.189c4.714 0 7.071 0 8.536 1.464 1.464 1.465 1.464 3.822 1.464 8.536v26.126c0 9.428 0 14.142-2.929 17.071-2.928 2.929-7.643 2.929-17.071 2.929h-44.189c-9.428 0-14.142 0-17.071-2.929-2.929-2.929-2.929-7.643-2.929-17.071v-26.126z"></path>
