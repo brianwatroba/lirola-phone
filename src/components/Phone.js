@@ -40,13 +40,12 @@ const Phone = ({
 		}
 	};
 
-	const handleOkPress = () => {
-		const exists = false;
-
+	const handleOkPress = async () => {
 		if (inputOpen) {
-			if (exists) {
-				redirect('https://www.apple.com');
-			} else {
+			try {
+				const url = await getPdfUrl(entered.join(''));
+				redirect(url);
+			} catch (error) {
 				setInputOpen(false);
 				setEntered([]);
 				setScreenMessage('INVALID NUMBER');
@@ -80,7 +79,6 @@ const Phone = ({
 	};
 
 	const handleCameraPress = async () => {
-		const url = await getPdfUrl(1111);
 		console.log(url);
 		// setCameraOpen((prev) => !prev);
 	};

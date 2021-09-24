@@ -4,6 +4,7 @@ exports.handler = async function (event, context) {
 
 	const base = new Airtable({ apiKey }).base('appnrc61rzosNVfmm');
 	const code = JSON.parse(event.body).code;
+	console.log('code', code);
 
 	const result = await base('PDFs')
 		.select({
