@@ -15,6 +15,7 @@ const Phone = ({
 	setLoadingMessage,
 	screenMessage,
 	setScreenMessage,
+	setCameraOpen,
 }) => {
 	const [bbox, ref] = useBbox();
 
@@ -75,6 +76,10 @@ const Phone = ({
 			default:
 				return;
 		}
+	};
+
+	const handleCameraPress = () => {
+		setCameraOpen((prev) => !prev);
 	};
 
 	const redirect = (url) => {

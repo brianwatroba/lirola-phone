@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Phone from './Phone';
 import Screen from './Screen';
+import Camera from './Camera';
 
 const Main = () => {
 	const [inputOpen, setInputOpen] = useState(false);
@@ -8,6 +9,7 @@ const Main = () => {
 	const [loading, setLoading] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState('');
 	const [screenMessage, setScreenMessage] = useState('Searching...');
+	const [cameraOpen, setCameraOpen] = useState(false);
 	const hideLoader = () => {
 		const loader = document.querySelector('#loader');
 		loader.style.display = 'none';
@@ -27,14 +29,21 @@ const Main = () => {
 			setLoadingMessage={setLoadingMessage}
 			screenMessage={screenMessage}
 			setScreenMessage={setScreenMessage}
+			cameraOpen={cameraOpen}
+			setCameraOpen={setCameraOpen}
 		>
-			<Screen
-				inputOpen={inputOpen}
-				entered={entered}
-				loading={loading}
-				loadingMessage={loadingMessage}
-				screenMessage={screenMessage}
-			/>
+			{cameraOpen ? (
+				<Camera />
+			) : (
+				<Screen
+					inputOpen={inputOpen}
+					entered={entered}
+					loading={loading}
+					loadingMessage={loadingMessage}
+					screenMessage={screenMessage}
+					setCameraOpen={setCameraOpen}
+				/>
+			)}
 		</Phone>
 	);
 };
