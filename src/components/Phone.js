@@ -80,9 +80,8 @@ const Phone = ({
 	};
 
 	const handleCameraPress = async () => {
-		const response = await axios.get('/.netlify/functions/getPdfUrl');
-		console.log(response);
-		return response;
+		const url = await getPdfUrl(1111);
+		console.log(url);
 		// setCameraOpen((prev) => !prev);
 	};
 
@@ -95,6 +94,13 @@ const Phone = ({
 			setScreenMessage('Searching...');
 			window.location.href = url;
 		}, 1200);
+	};
+
+	const getPdfUrl = async (code) => {
+		const response = await axios.post(`/.netlify/functions/getPdfUrl`, {
+			code,
+		});
+		return response.data;
 	};
 
 	return (
