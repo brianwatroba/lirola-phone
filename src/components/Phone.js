@@ -78,8 +78,7 @@ const Phone = ({
 		}
 	};
 
-	const handleCameraPress = async () => {
-		console.log(url);
+	const handleCameraPress = () => {
 		// setCameraOpen((prev) => !prev);
 	};
 
