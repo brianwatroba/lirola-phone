@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #222;">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/lirolalogo.svg" />
@@ -18,17 +18,18 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" hideLoader={hideLoader}></div>
-    <div id="loader" style="display: flex; height: 100vh; width: 100%; flex-direction: column; align-items: center;"> 
-      <div style="font-size: 3vh; margin-top: 25%; font-family: Tahoma; color: #BFBFBF">JESSE LIROA</div>
-      <img src="%PUBLIC_URL%/searchingForService.svg" style="margin-top: 30%" height="96px" width="96px">
-      <div class="searching">
+    <div id="root" ></div>
+    <div id="loader" style="display: flex; height: 100vh; width: 100%; margin: 0; flex-direction: column; align-items: center;"> 
+      <h1 style="font-size: 2.5vh; margin-top: 15vh; font-family: Tahoma; color: #fff">JESSE LIROLA</h1>
+      <h2 class="searching">
         <style>
         .searching {
-          font-size: 5vh; 
+          font-size: 3.75vh; 
           font-family: Tahoma; 
-          color: #5A5A5A; 
+          color: #fff; 
           animation: fade 1.5s ease-out infinite;
+          margin-top: 15vh;
+          text-align: center;
         }
           @keyframes fade {
             0% { opacity:1; }
@@ -36,8 +37,8 @@
             100% { opacity:1; }
           };
         </style>
-        SEARCHING...
-      </div>
+        SEARCHING FOR SERVICE...
+      </h2>
     </div>
 
   </body>
