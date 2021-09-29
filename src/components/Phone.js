@@ -242,8 +242,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="*" x="77.354" y="794.374">
@@ -279,8 +279,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="9" x="246.153" y="747.968">
@@ -321,8 +321,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="8" x="164.379" y="747.968">
@@ -358,8 +358,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="7" x="69.279" y="747.968">
@@ -395,8 +395,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="6" x="247.489" y="695.074">
@@ -436,8 +436,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="5" x="166.939" y="695.074">
@@ -473,8 +473,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="4" x="73.287" y="695.074">
@@ -510,8 +510,8 @@ const Phone = ({
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
 								fontFamily="Helvetica Neue"
-								fontSize="12"
-								fontWeight="300"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="3" x="252.016" y="644.348">
@@ -550,9 +550,9 @@ const Phone = ({
 								fill="#fff"
 								xmlSpace="preserve"
 								style={{ whiteSpace: 'pre' }}
-								fontFamily="Roboto"
-								fontSize="12"
-								fontWeight="300"
+								fontFamily="Helvetica Neue"
+								fontSize="13"
+								fontWeight="400"
 								letterSpacing="0em"
 							>
 								<tspan id="2" x="162.515" y="643.426">
