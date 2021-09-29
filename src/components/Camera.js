@@ -57,7 +57,7 @@ const Camera = () => {
 			<Canvas ref={photoRef} hidden={!hasPhoto}></Canvas>
 			<Video ref={videoRef} onClick={takePhoto} hidden={hasPhoto} />
 			<Dialog>
-				<OptionsBar left={'OK'} center={'TAKE'} right={'CANCEL'} />
+				<OptionsBar center={'TAKE'} right={'CANCEL'} />
 			</Dialog>
 		</Container>
 	);

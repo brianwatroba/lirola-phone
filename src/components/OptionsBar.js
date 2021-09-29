@@ -4,28 +4,32 @@ import styled from 'styled-components';
 const OptionsBar = ({ left, center, right }) => {
 	return (
 		<Bar>
-			{left && <Option pos={'flex-start'}>{left}</Option>}
-			{center && <Option pos={'center'}>{center}</Option>}
-			{right && <Option pos={'flex-end'}>{right}</Option>}
+			{left && <Option type={'left'}>{left}</Option>}
+			{center && <Option type={'center'}>{center}</Option>}
+			{right && <Option type={'right'}>{right}</Option>}
 		</Bar>
 	);
 };
 
 const Bar = styled.div`
+	position: relative;
 	display: flex;
 	height: 20%;
 	width: 100%;
 	background-color: #9a9a9a;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
 	// padding: 4px 10px 0px 10px;
 `;
 
 const Option = styled.div`
-	justify-self: ${(props) => props.pos};
+	position: absolute;
+	left: ${(props) => (props.type === 'left' ? '0px' : null)};
+	left: ${(props) => (props.type === 'center' ? '40%' : null)};
+	right: ${(props) => (props.type === 'right' ? '0px' : null)};
 	font-size: 1vh;
 	color: #cfcfcf;
-	padding: 0px 8px 0px 8px;
+	padding: 0px 6px 0px 6px;
 `;
 
 export default OptionsBar;
