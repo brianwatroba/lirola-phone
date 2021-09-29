@@ -4,17 +4,31 @@ exports.handler = async function (event, context) {
 
 	const base = new Airtable({ apiKey }).base('appnrc61rzosNVfmm');
 	const code = JSON.parse(event.body).code;
-	console.log('code', code);
 
-	const result = await base('PDFs')
-		.select({
-			filterByFormula: `code = "${code}"`,
-		})
-		.firstPage();
+	try {
+		const response = await base('PDFs')
+			.select({
+				filterByFormula: `code = "${code}"`,
+			})
+			.firstPage();
 
-	const url = result[0].fields.attachments[0].url;
-	return {
-		statusCode: 200,
-		body: JSON.stringify(url),
-	};
+		if (response.length > 0) {
+			const result = parseResponse(response);
+			return {
+				statusCode: 200,
+				body: JSON.stringify(result),
+			};
+		}
+	} catch (error) {
+		console.log(error);
+		return {
+			statusCode: 404,
+		};
+	}
+};
+
+const parseResponse = (res) => {
+	const fields = res[0].fields;
+	if (fields.hasOwnProperty('attachments')) return fields.attachments[0];
+	if (fields.hasOwnProperty('link')) return fields.link;
 };
