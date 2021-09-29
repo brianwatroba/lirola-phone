@@ -8,7 +8,10 @@ const Main = () => {
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState('');
-	const [screenMessage, setScreenMessage] = useState('Searching...');
+	const [initialScreenMessage, setInitialScreenMessage] = useState(
+		'Searching for service...'
+	);
+	const [screenMessage, setScreenMessage] = useState(initialScreenMessage);
 	const [cameraOpen, setCameraOpen] = useState(false);
 	const hideLoader = () => {
 		const loader = document.querySelector('#loader');
@@ -28,6 +31,7 @@ const Main = () => {
 			loadingMessage={loadingMessage}
 			setLoadingMessage={setLoadingMessage}
 			screenMessage={screenMessage}
+			initialScreenMessage={initialScreenMessage}
 			setScreenMessage={setScreenMessage}
 			cameraOpen={cameraOpen}
 			setCameraOpen={setCameraOpen}
@@ -41,6 +45,7 @@ const Main = () => {
 					loading={loading}
 					loadingMessage={loadingMessage}
 					screenMessage={screenMessage}
+					initialScreenMessage={initialScreenMessage}
 					setCameraOpen={setCameraOpen}
 				/>
 			)}

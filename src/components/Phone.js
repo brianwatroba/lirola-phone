@@ -10,11 +10,9 @@ const Phone = ({
 	setEntered,
 	inputOpen,
 	entered,
-	loading,
 	setLoading,
-	loadingMessage,
 	setLoadingMessage,
-	screenMessage,
+	initialScreenMessage,
 	setScreenMessage,
 	setCameraOpen,
 }) => {
@@ -41,12 +39,11 @@ const Phone = ({
 	};
 
 	const handleOkPress = async () => {
-		setLoading(true);
 		if (inputOpen) {
 			try {
 				setLoading(true);
 				setInputOpen(false);
-				setLoadingMessage('LOADING');
+				setLoadingMessage('DIALING');
 				const url = await getPdfUrl(entered.join(''));
 				redirect(url);
 			} catch (error) {
@@ -54,7 +51,7 @@ const Phone = ({
 				setInputOpen(false);
 				setEntered([]);
 				setScreenMessage('INVALID NUMBER');
-				setTimeout(() => setScreenMessage('Searching...'), 2000);
+				setTimeout(() => setScreenMessage(initialScreenMessage), 2000);
 			}
 		}
 	};
@@ -99,10 +96,10 @@ const Phone = ({
 	const redirect = (url) => {
 		setInputOpen(false);
 		setLoading(true);
-		setLoadingMessage('Redirecting');
+		setLoadingMessage('REDIRECTING');
 		setTimeout(() => {
 			setLoading(false);
-			setScreenMessage('Searching...');
+			setScreenMessage(initialScreenMessage);
 			window.location.href = url;
 		}, 1200);
 	};
@@ -1095,7 +1092,7 @@ const PhoneContainer = styled.div`
 
 const ScreenContainer = styled.div`
 	position: absolute;
-	background-color: green;
+	background-color: #8fa97a;
 	z-index: 1000;
 	width: ${(props) => props.bbox.width}px;
 	height: ${(props) => props.bbox.height}px;
