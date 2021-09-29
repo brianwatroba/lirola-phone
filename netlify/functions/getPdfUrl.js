@@ -29,6 +29,6 @@ exports.handler = async function (event, context) {
 
 const parseResponse = (res) => {
 	const fields = res[0].fields;
-	if (fields.hasOwnProperty('attachments')) return fields.attachments[0];
+	if (fields.hasOwnProperty('attachments')) return fields.attachments[0].url;
 	if (fields.hasOwnProperty('link')) return fields.link;
 };
