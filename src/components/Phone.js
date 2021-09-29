@@ -41,11 +41,16 @@ const Phone = ({
 	};
 
 	const handleOkPress = async () => {
+		setLoading(true);
 		if (inputOpen) {
 			try {
+				setLoading(true);
+				setInputOpen(false);
+				setLoadingMessage('LOADING');
 				const url = await getPdfUrl(entered.join(''));
 				redirect(url);
 			} catch (error) {
+				setLoading(false);
 				setInputOpen(false);
 				setEntered([]);
 				setScreenMessage('INVALID NUMBER');
@@ -85,7 +90,6 @@ const Phone = ({
 	const redirect = (url) => {
 		setInputOpen(false);
 		setLoadingMessage('Redirecting');
-		setLoading(true);
 		setTimeout(() => {
 			setLoading(false);
 			setScreenMessage('Searching...');
