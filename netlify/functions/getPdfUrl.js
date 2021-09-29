@@ -18,6 +18,10 @@ exports.handler = async function (event, context) {
 				statusCode: 200,
 				body: JSON.stringify(result),
 			};
+		} else {
+			return {
+				statusCode: 404,
+			};
 		}
 	} catch (error) {
 		console.log(error);
