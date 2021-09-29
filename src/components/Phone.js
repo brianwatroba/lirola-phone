@@ -46,7 +46,7 @@ const Phone = ({
 			try {
 				setLoading(true);
 				setInputOpen(false);
-				setLoadingMessage('LOADING');
+				setLoadingMessage('DIALING');
 				const url = await getPdfUrl(entered.join(''));
 				redirect(url);
 			} catch (error) {
@@ -54,7 +54,7 @@ const Phone = ({
 				setInputOpen(false);
 				setEntered([]);
 				setScreenMessage('INVALID NUMBER');
-				setTimeout(() => setScreenMessage('Searching...'), 2000);
+				setTimeout(() => setScreenMessage('Searching for service...'), 2000);
 			}
 		}
 	};
@@ -102,7 +102,7 @@ const Phone = ({
 		setLoadingMessage('Redirecting');
 		setTimeout(() => {
 			setLoading(false);
-			setScreenMessage('Searching...');
+			setScreenMessage('Searching for service...');
 			window.location.href = url;
 		}, 1200);
 	};

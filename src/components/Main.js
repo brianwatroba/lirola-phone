@@ -8,7 +8,9 @@ const Main = () => {
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState('');
-	const [screenMessage, setScreenMessage] = useState('Searching...');
+	const [screenMessage, setScreenMessage] = useState(
+		'Searching for service...'
+	);
 	const [cameraOpen, setCameraOpen] = useState(false);
 	const hideLoader = () => {
 		const loader = document.querySelector('#loader');
