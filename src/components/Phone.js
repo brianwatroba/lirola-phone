@@ -68,15 +68,24 @@ const Phone = ({
 	};
 
 	const handleLinkPress = (e) => {
-		switch (e.target.id) {
+		const destination = e.target.id;
+		const confirmed = (msg) => {
+			const ok = window.confirm(msg);
+			return ok;
+		};
+
+		switch (destination) {
 			case 'instagram':
-				redirect('https://www.instagram.com/jesselirola');
+				if (confirmed(`Go to Jesse's Instagram?`))
+					redirect('https://www.instagram.com/jesselirola');
 				break;
 			case 'website':
-				redirect('https://www.jesselirola.com');
+				if (confirmed(`Go to Jesse's portfolio site?`))
+					redirect('https://www.jesselirola.com');
 				break;
 			case 'email':
-				redirect('mailto:jesse@jesselirola.com');
+				if (confirmed(`Open email to message Jesse?`))
+					redirect('mailto:jesse@jesselirola.com');
 				break;
 			default:
 				return;
@@ -89,6 +98,7 @@ const Phone = ({
 
 	const redirect = (url) => {
 		setInputOpen(false);
+		setLoading(true);
 		setLoadingMessage('Redirecting');
 		setTimeout(() => {
 			setLoading(false);
