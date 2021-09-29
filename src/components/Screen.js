@@ -15,7 +15,6 @@ const Screen = ({
 	loading,
 	loadingMessage,
 	screenMessage,
-	initialScreenMessage,
 }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return (

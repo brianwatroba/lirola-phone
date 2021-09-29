@@ -4,13 +4,11 @@ import Screen from './Screen';
 import Camera from './Camera';
 
 const Main = () => {
+	const initialScreenMessage = 'Searching for service...';
 	const [inputOpen, setInputOpen] = useState(false);
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState('');
-	const [initialScreenMessage, setInitialScreenMessage] = useState(
-		'Searching for service...'
-	);
 	const [screenMessage, setScreenMessage] = useState(initialScreenMessage);
 	const [cameraOpen, setCameraOpen] = useState(false);
 	const hideLoader = () => {
@@ -20,6 +18,7 @@ const Main = () => {
 	useEffect(() => {
 		hideLoader();
 	}, []);
+
 	return (
 		<Phone
 			setInputOpen={setInputOpen}

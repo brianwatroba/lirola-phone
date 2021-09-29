@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import OptionsBar from './OptionsBar';
+import getVideo from '../utils/getVideo';
+import takePhoto from '../utils/takePhoto';
 
 const Camera = () => {
 	const containerRef = useRef(null);
@@ -9,55 +11,21 @@ const Camera = () => {
 	const photoRef = useRef(null);
 	const [hasPhoto, setHasPhoto] = useState(false);
 
-	const getVideo = () => {
-		navigator.mediaDevices
-			.getUserMedia({
-				video: { facingMode: 'user', frameRate: { max: 12 } },
-				audio: false,
-			})
-			.then((stream) => {
-				console.log(stream.getVideoTracks()[0].getSettings().frameRate);
-				let video = videoRef.current;
-				video.srcObject = stream;
-				video.play();
-			})
-			.catch((err) => alert('Error occurred: ' + err));
-	};
-
-	const takePhoto = () => {
+	const handleTakePhoto = () => {
 		setHasPhoto(true);
-		const width = containerRef.current.clientWidth;
-		const height = containerRef.current.clientHeight;
-
-		console.log(containerRef);
-
-		let video = videoRef.current;
-		let photo = photoRef.current;
-		console.log(containerRef);
-
-		photo.width = width;
-		photo.height = height;
-
-		let ctx = photo.getContext('2d');
-		ctx.drawImage(
-			video,
-			-(video.clientWidth - width) / 2,
-			-(video.clientHeight - height),
-			video.clientWidth,
-			video.clientHeight
-		);
+		takePhoto(videoRef, photoRef, containerRef);
 	};
 
 	useEffect(() => {
-		getVideo();
+		getVideo(videoRef);
 	}, [videoRef, photoRef]);
 
 	return (
 		<Container ref={containerRef}>
 			<Canvas ref={photoRef} hidden={!hasPhoto}></Canvas>
-			<Video ref={videoRef} onClick={takePhoto} hidden={hasPhoto} />
+			<Video ref={videoRef} onClick={handleTakePhoto} hidden={hasPhoto} />
 			<Dialog>
-				<OptionsBar center={'TAKE'} right={'CANCEL'} />
+				<OptionsBar center={hasPhoto ? 'RETAKE' : 'TAKE'} right={'CANCEL'} />
 			</Dialog>
 		</Container>
 	);
