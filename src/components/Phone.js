@@ -93,7 +93,7 @@ const Phone = ({
 	};
 
 	const handleCameraPress = () => {
-		// setCameraOpen((prev) => !prev);
+		setCameraOpen((prev) => !prev);
 	};
 
 	const redirect = (url) => {

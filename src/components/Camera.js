@@ -36,7 +36,13 @@ const Camera = () => {
 		photo.height = height;
 
 		let ctx = photo.getContext('2d');
-		ctx.drawImage(video, 30, 0, 100, 100, 0, 0, 100, 100);
+		ctx.drawImage(
+			video,
+			-(video.clientWidth - width) / 2,
+			-(video.clientHeight - height),
+			video.clientWidth,
+			video.clientHeight
+		);
 	};
 
 	useEffect(() => {
