@@ -1,31 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import OptionsBar from './OptionsBar';
+import NumInput from './NumInput';
+
 import getVideo from '../utils/getVideo';
-import takePhoto from '../utils/takePhoto';
 
-const Camera = () => {
-	const containerRef = useRef(null);
-	const videoRef = useRef(null);
-	const photoRef = useRef(null);
-	const [hasPhoto, setHasPhoto] = useState(false);
-
-	const handleTakePhoto = () => {
-		setHasPhoto(true);
-		takePhoto(videoRef, photoRef, containerRef);
-	};
-
+const Camera = ({
+	isOpen,
+	entered,
+	videoRef,
+	photoRef,
+	videoContainerRef,
+	hasPhoto,
+}) => {
 	useEffect(() => {
 		getVideo(videoRef);
 	}, [videoRef, photoRef]);
 
 	return (
-		<Container ref={containerRef}>
+		<Container ref={videoContainerRef}>
 			<Canvas ref={photoRef} hidden={!hasPhoto}></Canvas>
-			<Video ref={videoRef} onClick={handleTakePhoto} hidden={hasPhoto} />
+			<Video ref={videoRef} hidden={hasPhoto} />
 			<Dialog>
-				<OptionsBar center={hasPhoto ? 'RETAKE' : 'TAKE'} right={'CANCEL'} />
+				{isOpen.sending && (
+					<NumInput title={'YOUR NUMBER:'} entered={entered} />
+				)}
+				<OptionsBar
+					left={hasPhoto ? 'SEND' : null}
+					center={hasPhoto ? 'RETAKE' : 'TAKE'}
+					right={'CANCEL'}
+				/>
 			</Dialog>
 		</Container>
 	);
