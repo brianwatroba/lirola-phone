@@ -9,6 +9,7 @@ import useBbox from '../hooks/useBbox';
 import hideLoader from '../utils/hideLoader';
 
 const Main = () => {
+	const cameraViable = navigator.mediaDevices;
 	const [bbox, ref] = useBbox();
 	const videoRef = useRef(null),
 		photoRef = useRef(null),
@@ -54,7 +55,7 @@ const Main = () => {
 				/>
 			</PhoneContainer>
 			<ScreenContainer bbox={bbox}>
-				{isOpen.camera ? (
+				{isOpen.camera && cameraViable ? (
 					<Camera
 						hasPhoto={hasPhoto}
 						setHasPhoto={setHasPhoto}
