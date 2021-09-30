@@ -1,51 +1,107 @@
-import React, { useEffect, useState } from 'react';
-import Phone from './Phone';
+import React, { useEffect, useState, useRef } from 'react';
+import styled from 'styled-components';
+
+import PhoneBody from './PhoneBody';
 import Screen from './Screen';
 import Camera from './Camera';
 
+import useBbox from '../hooks/useBbox';
+import hideLoader from '../utils/hideLoader';
+
 const Main = () => {
-	const [inputOpen, setInputOpen] = useState(false);
+	const cameraViable = navigator.mediaDevices;
+	const [bbox, ref] = useBbox();
+	const videoRef = useRef(null),
+		photoRef = useRef(null),
+		videoContainerRef = useRef(null);
+
+	const initialScreenMessage = 'Searching for service...';
+	const [messages, setMessages] = useState({
+		screen: initialScreenMessage,
+		loading: 'LOADING',
+	});
+	const [isOpen, setIsOpen] = useState({
+		input: false,
+		camera: false,
+		sending: false,
+	});
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [loadingMessage, setLoadingMessage] = useState('');
-	const [screenMessage, setScreenMessage] = useState('Searching...');
-	const [cameraOpen, setCameraOpen] = useState(false);
-	const hideLoader = () => {
-		const loader = document.querySelector('#loader');
-		loader.style.display = 'none';
-	};
+	const [hasPhoto, setHasPhoto] = useState(false);
+
 	useEffect(() => {
 		hideLoader();
 	}, []);
+
 	return (
-		<Phone
-			setInputOpen={setInputOpen}
-			inputOpen={inputOpen}
-			setEntered={setEntered}
-			entered={entered}
-			loading={loading}
-			setLoading={setLoading}
-			loadingMessage={loadingMessage}
-			setLoadingMessage={setLoadingMessage}
-			screenMessage={screenMessage}
-			setScreenMessage={setScreenMessage}
-			cameraOpen={cameraOpen}
-			setCameraOpen={setCameraOpen}
-		>
-			{cameraOpen ? (
-				<Camera />
-			) : (
-				<Screen
-					inputOpen={inputOpen}
+		<>
+			<PhoneContainer>
+				<PhoneBody
+					hasPhoto={hasPhoto}
+					setHasPhoto={setHasPhoto}
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
+					messages={messages}
+					setMessages={setMessages}
+					setEntered={setEntered}
 					entered={entered}
 					loading={loading}
-					loadingMessage={loadingMessage}
-					screenMessage={screenMessage}
-					setCameraOpen={setCameraOpen}
+					setLoading={setLoading}
+					initialScreenMessage={initialScreenMessage}
+					bboxRef={ref}
+					videoRef={videoRef}
+					photoRef={photoRef}
+					videoContainerRef={videoContainerRef}
 				/>
-			)}
-		</Phone>
+			</PhoneContainer>
+			<ScreenContainer bbox={bbox}>
+				{isOpen.camera && cameraViable ? (
+					<Camera
+						hasPhoto={hasPhoto}
+						setHasPhoto={setHasPhoto}
+						videoRef={videoRef}
+						photoRef={photoRef}
+						videoContainerRef={videoContainerRef}
+						entered={entered}
+						isOpen={isOpen}
+					/>
+				) : (
+					<Screen
+						bbox={bbox}
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+						messages={messages}
+						entered={entered}
+						loading={loading}
+						initialScreenMessage={initialScreenMessage}
+					/>
+				)}
+			</ScreenContainer>
+		</>
 	);
 };
+
+const PhoneContainer = styled.div`
+	position: relative;
+	height: 85vh;
+	background-color: #222;
+	text-align: center;
+	aligncontent: center;
+	display: flex;
+	justify-content: center;
+`;
+
+const ScreenContainer = styled.div`
+	position: absolute;
+	background-color: #8fa97a;
+	z-index: 1000;
+	width: ${(props) => props.bbox.width}px;
+	height: ${(props) => props.bbox.height}px;
+	top: ${(props) => props.bbox.top}px;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+`;
 
 export default Main;

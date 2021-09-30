@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OptionsBar = ({ left, right }) => {
+const OptionsBar = ({ left, center, right }) => {
 	return (
 		<Bar>
-			<Option>{left}</Option>
-			<Option>{right}</Option>
+			{left && <Option type={'left'}>{left}</Option>}
+			{center && <Option type={'center'}>{center}</Option>}
+			{right && <Option type={'right'}>{right}</Option>}
 		</Bar>
 	);
 };
 
 const Bar = styled.div`
+	position: relative;
 	display: flex;
 	height: 20%;
 	width: 100%;
@@ -21,9 +23,17 @@ const Bar = styled.div`
 `;
 
 const Option = styled.div`
+	position: absolute;
+	left: ${(props) => (props.type === 'left' ? '0px' : null)};
+
+	right: ${(props) => (props.type === 'right' ? '0px' : null)};
+	left: ${(props) => (props.type === 'center' ? '0' : null)};
+	right: ${(props) => (props.type === 'center' ? '0' : null)};
+	margin: ${(props) => (props.type === 'center' ? '0' : null)};
+	text-align: ${(props) => (props.type === 'center' ? 'center' : null)};
 	font-size: 1vh;
 	color: #cfcfcf;
-	padding: 0px 8px 0px 8px;
+	padding: 0px 6px 0px 6px;
 `;
 
 export default OptionsBar;
