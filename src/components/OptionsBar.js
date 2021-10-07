@@ -12,7 +12,8 @@ const OptionsBar = ({ left, center, right }) => {
 };
 
 const Bar = styled.div`
-	position: relative;
+	position: absolute;
+	bottom: 0;
 	display: flex;
 	height: 20%;
 	width: 100%;

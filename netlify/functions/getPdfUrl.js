@@ -21,12 +21,14 @@ exports.handler = async function (event, context) {
 		} else {
 			return {
 				statusCode: 404,
+				body: JSON.stringify({ message: 'invalid' }),
 			};
 		}
 	} catch (error) {
 		console.log(error);
 		return {
 			statusCode: 404,
+			body: JSON.stringify({ message: 'invalid' }),
 		};
 	}
 };

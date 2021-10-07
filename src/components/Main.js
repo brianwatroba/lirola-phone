@@ -31,6 +31,9 @@ const Main = () => {
 
 	useEffect(() => {
 		hideLoader();
+		// return () => {
+		// 	setEntered([]);
+		// };
 	}, []);
 
 	return (
