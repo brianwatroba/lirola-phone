@@ -6,8 +6,9 @@ import './phone.css';
 
 import getPdfUrl from '../utils/getPdfUrl';
 import takePhoto from '../utils/takePhoto';
-import sprite from '../sounds/sprite.mp3';
-import spriteMap from '../sounds/spriteMap';
+import spriteMap from '../utils/spriteMap';
+const audioSprite =
+	'https://s3.us-east-2.amazonaws.com/www.spyfall.app/sprite.mp3';
 
 const PhoneBody = ({
 	isOpen,
@@ -25,7 +26,7 @@ const PhoneBody = ({
 	videoContainerRef,
 	photoRef,
 }) => {
-	const [play] = useSound(sprite, spriteMap);
+	const [play] = useSound(audioSprite, { sprite: spriteMap, interrupt: true });
 
 	const handleNumKeyPress = (e) => {
 		const value = e.target.id;
@@ -39,7 +40,7 @@ const PhoneBody = ({
 	};
 
 	const handleCancelPress = async () => {
-		play({ id: 'key1' });
+		play({ id: 'key2' });
 		setLoading(false);
 		setEntered([]);
 		setHasPhoto(false);
@@ -58,13 +59,14 @@ const PhoneBody = ({
 	const handleOkPress = async () => {
 		if (isOpen.input) {
 			try {
+				play({ id: 'dialing' });
 				setLoading(true);
 				setIsOpen({ ...isOpen, input: false });
 				setMessages({ ...messages, loading: 'DIALING' });
-
 				const url = await getPdfUrl(entered.join(''));
 				redirect(url);
 			} catch (error) {
+				play({ id: 'invalid' });
 				setLoading(false);
 				setIsOpen({ ...isOpen, input: false });
 				setEntered([]);
@@ -76,8 +78,10 @@ const PhoneBody = ({
 				);
 			}
 		} else if (hasPhoto) {
+			play({ id: 'key2' });
 			setIsOpen({ ...isOpen, sending: true });
 		} else if (isOpen.sending) {
+			play({ id: 'key2' });
 			setLoading(true);
 			setMessages({ ...messages, loading: 'SENDING' });
 			setIsOpen({ camera: false, input: false, sending: false });
@@ -85,6 +89,7 @@ const PhoneBody = ({
 	};
 
 	const handleBackspacePress = () => {
+		play({ id: 'key3' });
 		if (entered.length > 0) {
 			setEntered((oldArray) => oldArray.slice(0, -1));
 		} else {
@@ -93,8 +98,8 @@ const PhoneBody = ({
 	};
 
 	const handleLinkPress = (e) => {
+		play({ id: 'key2' });
 		const destination = e.target.id;
-
 		const confirmed = (msg) => {
 			const ok = window.confirm(msg);
 			return ok;
@@ -121,13 +126,16 @@ const PhoneBody = ({
 	const handleCameraPress = () => {
 		if (isOpen.camera) {
 			if (hasPhoto) {
+				play({ id: 'key1' });
 				setHasPhoto(false);
 			} else {
+				play({ id: 'shutter' });
 				setHasPhoto(true);
 				takePhoto(videoRef, photoRef, videoContainerRef);
 			}
 		}
 		if (!isOpen.camera) {
+			play({ id: 'key1' });
 			setIsOpen({ ...isOpen, camera: !isOpen.camera });
 		}
 	};
