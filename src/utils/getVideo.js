@@ -6,7 +6,7 @@ const getVideo = (videoRef) => {
 				audio: false,
 			})
 			.then((stream) => {
-				console.log(stream.getVideoTracks()[0].getSettings().frameRate);
+				console.log(stream);
 				let video = videoRef.current;
 				video.srcObject = stream;
 				video.play();

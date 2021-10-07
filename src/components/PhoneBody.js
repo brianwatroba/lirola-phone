@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useSound from 'use-sound';
 
 import PhoneSVG from './PhoneSVG';
