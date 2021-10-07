@@ -58,7 +58,7 @@ const Main = () => {
 				/>
 			</PhoneContainer>
 			<ScreenContainer bbox={bbox}>
-				{isOpen.camera && cameraViable ? (
+				{isOpen.camera ? (
 					<Camera
 						hasPhoto={hasPhoto}
 						setHasPhoto={setHasPhoto}
