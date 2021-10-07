@@ -2,7 +2,12 @@ const getVideo = (videoRef) => {
 	if (navigator.mediaDevices) {
 		navigator.mediaDevices
 			.getUserMedia({
-				video: { facingMode: 'user', frameRate: { max: 12 } },
+				video: {
+					facingMode: 'user',
+					frameRate: { max: 12 },
+					width: 1500,
+					height: 1500,
+				},
 				audio: false,
 			})
 			.then((stream) => {

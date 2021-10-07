@@ -21,7 +21,7 @@ const Camera = ({
 	return (
 		<Container ref={videoContainerRef}>
 			<Canvas ref={photoRef} hidden={!hasPhoto}></Canvas>
-			<Video playsinline ref={videoRef} hidden={hasPhoto} />
+			<Video muted playsInline ref={videoRef} hidden={hasPhoto} />
 			<Dialog>
 				{isOpen.sending && (
 					<NumInput title={'YOUR NUMBER:'} entered={entered} />
