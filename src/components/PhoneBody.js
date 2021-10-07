@@ -79,11 +79,18 @@ const PhoneBody = ({
 			}
 		} else if (hasPhoto) {
 			play({ id: 'key2' });
-			setIsOpen({ ...isOpen, sending: true });
+			const image = photoRef.current.toDataURL('img/png');
+			var link = document.createElement('a');
+			link.download = 'selfie.png';
+			link.href = image;
+			link.click();
+
+			// setIsOpen({ ...isOpen, sending: true });
 		} else if (isOpen.sending) {
 			play({ id: 'key2' });
-			setLoading(true);
-			setMessages({ ...messages, loading: 'SENDING' });
+
+			// setLoading(true);
+			// setMessages({ ...messages, loading: 'SENDING' });
 			setIsOpen({ camera: false, input: false, sending: false });
 		}
 	};

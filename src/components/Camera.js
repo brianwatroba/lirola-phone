@@ -20,14 +20,14 @@ const Camera = ({
 
 	return (
 		<Container ref={videoContainerRef}>
-			<Canvas ref={photoRef} hidden={!hasPhoto}></Canvas>
+			<Canvas id="canv" ref={photoRef} hidden={!hasPhoto} />
 			<Video muted playsInline ref={videoRef} hidden={hasPhoto} />
 			<Dialog>
 				{isOpen.sending && (
 					<NumInput title={'YOUR NUMBER:'} entered={entered} />
 				)}
 				<OptionsBar
-					left={hasPhoto ? 'SEND' : null}
+					left={hasPhoto ? 'SAVE' : null}
 					center={hasPhoto ? 'RETAKE' : 'TAKE'}
 					right={'CANCEL'}
 				/>
