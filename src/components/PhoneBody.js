@@ -65,6 +65,7 @@ const PhoneBody = ({
 				setMessages({ ...messages, loading: 'DIALING' });
 				const url = await getPdfUrl(entered.join(''));
 				redirect(url);
+				setEntered([]);
 			} catch (error) {
 				play({ id: 'invalid' });
 				setLoading(false);
