@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useSound from 'use-sound';
 
 import PhoneSVG from './PhoneSVG';
@@ -27,6 +27,7 @@ const PhoneBody = ({
 	photoRef,
 	startingUp,
 }) => {
+	const screenshotRef = useRef();
 	const [play] = useSound(audioSprite, { sprite: spriteMap, interrupt: true });
 
 	const handleNumKeyPress = (e) => {
@@ -81,7 +82,7 @@ const PhoneBody = ({
 			}
 		} else if (hasPhoto) {
 			play({ id: 'key2' });
-			const image = photoRef.current.toDataURL('img/png');
+			const image = screenshotRef.current.toDataURL('img/png');
 			var link = document.createElement('a');
 			link.download = 'selfie.png';
 			link.href = image;
@@ -140,7 +141,7 @@ const PhoneBody = ({
 			} else {
 				play({ id: 'shutter' });
 				setHasPhoto(true);
-				takePhoto(videoRef, photoRef, videoContainerRef);
+				takePhoto(videoRef, photoRef, videoContainerRef, screenshotRef);
 			}
 		}
 		if (!isOpen.camera) {
@@ -162,6 +163,7 @@ const PhoneBody = ({
 
 	return (
 		<PhoneSVG
+			ref={screenshotRef}
 			bboxRef={bboxRef}
 			hasPhoto={hasPhoto}
 			handleBackspacePress={handleBackspacePress}
