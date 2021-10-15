@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import html2canvas from 'html2canvas';
 
 import PhoneBody from './PhoneBody';
 import Screen from './Screen';
@@ -9,7 +10,6 @@ import useBbox from '../hooks/useBbox';
 import hideLoader from '../utils/hideLoader';
 
 const Main = () => {
-	const cameraViable = navigator.mediaDevices;
 	const [bbox, ref] = useBbox();
 	const videoRef = useRef(null),
 		photoRef = useRef(null),
@@ -30,6 +30,18 @@ const Main = () => {
 	const [hasPhoto, setHasPhoto] = useState(false);
 	const [startingUp, setStartingUp] = useState(true);
 
+	const takeScreenshot = () => {
+		html2canvas(screenshotRef.current).then((canvas) => {
+			console.log(canvas);
+			const image = canvas.toDataURL('img/png');
+			var link = document.createElement('a');
+			link.download = 'selfie.png';
+			link.href = image;
+			link.click();
+		});
+	};
+	const screenshotRef = useRef(null);
+
 	useEffect(() => {
 		hideLoader();
 		setTimeout(() => setStartingUp(false), 4000);
@@ -39,7 +51,7 @@ const Main = () => {
 	}, []);
 
 	return (
-		<>
+		<div ref={screenshotRef}>
 			<PhoneContainer>
 				<PhoneBody
 					hasPhoto={hasPhoto}
@@ -58,6 +70,7 @@ const Main = () => {
 					photoRef={photoRef}
 					videoContainerRef={videoContainerRef}
 					startingUp={startingUp}
+					takeScreenshot={takeScreenshot}
 				/>
 			</PhoneContainer>
 			<ScreenContainer bbox={bbox}>
@@ -84,7 +97,7 @@ const Main = () => {
 					/>
 				)}
 			</ScreenContainer>
-		</>
+		</div>
 	);
 };
 

@@ -37,6 +37,8 @@ const Camera = ({
 };
 
 const Container = styled.div`
+	position: relative;
+	z-index: 2;
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -48,6 +50,8 @@ const Container = styled.div`
 `;
 
 const Dialog = styled.div`
+	position: relative;
+	z-index: 12;
 	position: absolute;
 	bottom: 0;
 	display: flex;
@@ -69,8 +73,10 @@ const lightUp = keyframes`
     100% { opacity:1;}
 `;
 const Canvas = styled.canvas`
+	position: relative;
+	z-index: 10;
 	filter: opacity(0.65) blur(1px);
-	animation: ${lightUp} 0.25s;
+	animation: ${lightUp} 0.5s;
 `;
 
 export default Camera;
