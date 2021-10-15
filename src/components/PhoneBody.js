@@ -25,6 +25,7 @@ const PhoneBody = ({
 	videoRef,
 	videoContainerRef,
 	photoRef,
+	startingUp,
 }) => {
 	const [play] = useSound(audioSprite, { sprite: spriteMap, interrupt: true });
 
@@ -169,6 +170,7 @@ const PhoneBody = ({
 			handleLinkPress={handleLinkPress}
 			handleNumKeyPress={handleNumKeyPress}
 			handleOkPress={handleOkPress}
+			startingUp={startingUp}
 		/>
 	);
 };

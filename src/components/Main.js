@@ -15,7 +15,7 @@ const Main = () => {
 		photoRef = useRef(null),
 		videoContainerRef = useRef(null);
 
-	const initialScreenMessage = 'Searching for service...';
+	const initialScreenMessage = 'READY';
 	const [messages, setMessages] = useState({
 		screen: initialScreenMessage,
 		loading: 'LOADING',
@@ -28,9 +28,11 @@ const Main = () => {
 	const [entered, setEntered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [hasPhoto, setHasPhoto] = useState(false);
+	const [startingUp, setStartingUp] = useState(true);
 
 	useEffect(() => {
 		hideLoader();
+		setTimeout(() => setStartingUp(false), 4000);
 		// return () => {
 		// 	setEntered([]);
 		// };
@@ -55,6 +57,7 @@ const Main = () => {
 					videoRef={videoRef}
 					photoRef={photoRef}
 					videoContainerRef={videoContainerRef}
+					startingUp={startingUp}
 				/>
 			</PhoneContainer>
 			<ScreenContainer bbox={bbox}>
@@ -77,6 +80,7 @@ const Main = () => {
 						entered={entered}
 						loading={loading}
 						initialScreenMessage={initialScreenMessage}
+						startingUp={startingUp}
 					/>
 				)}
 			</ScreenContainer>

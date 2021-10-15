@@ -9,9 +9,13 @@ import OptionsBar from './OptionsBar';
 // import localeData from 'dayjs/plugin/localeData';
 // dayjs.extend(localeData);
 
-const Screen = ({ isOpen, messages, entered, loading }) => {
+const Screen = ({ isOpen, messages, entered, loading, startingUp }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
-	return (
+	return startingUp ? (
+		<BootContainer>
+			<BootMessage>HELLO LIRO</BootMessage>
+		</BootContainer>
+	) : (
 		<Container>
 			<StatusBar>
 				<img src={batteryIcon} style={{ height: '3vh' }} alt="battery" />
@@ -56,6 +60,31 @@ const FadeInOut = keyframes`
 	0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+`;
+
+const FadeIn = keyframes`
+	0% { opacity:0; }
+    100% { opacity:1; }
+`;
+
+const BackgroundFadeIn = keyframes`
+	0% { background-color: #A5A5A5 }
+    100% { background-color: rgba(170, 206, 141)}
+`;
+
+const BootContainer = styled.div`
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	// background-color: rgba(170, 206, 141, 0.75)
+	// background-image: linear-gradient(
+	// 		rgba(170, 206, 141, 0.75),
+	// 		rgba(170, 206, 141, 0.75)
+	// 	),
+	// 	url(${phoneWallpaper});
+	animation: ${BackgroundFadeIn} 4s ease-in;
 `;
 
 const ProgressAnimation = keyframes`
@@ -111,7 +140,7 @@ const Clock = styled.div`
 
 const ReadyText = styled.div`
 	text-align: center;
-	font-size: 1.25vh;
+	font-size: 1.5vh;
 	color: #5a5a5a;
 	animation: ${FadeInOut} 2s ease-out infinite;
 `;
@@ -131,6 +160,19 @@ const StatusText = styled.div`
 	font-size: 1.5vh;
 	color: #5a5a5a;
 	margin-bottom: 10%;
+`;
+
+const BootMessage = styled.div`
+	display: flex;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+	color: #5a5a5a;
+	font-size: 2vh;
+	animation: ${FadeIn} 2s ease-in;
 `;
 
 export default Screen;
