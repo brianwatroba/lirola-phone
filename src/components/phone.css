@@ -4,7 +4,17 @@
 	}
 
 	100.0% {
-		fill: red;
+		fill: #3e8e41;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		fill: #3e8e41;
+	}
+
+	100.0% {
+		fill: #fff;
 	}
 }
 
@@ -20,6 +30,8 @@
 
 .button {
 	animation: lightUp 2s forwards linear;
+}
 
-	transform: translateY(1px);
+.boot-button > text {
+	animation: pulse 0.75s infinite ease-out;
 }

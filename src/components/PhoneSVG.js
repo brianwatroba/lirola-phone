@@ -6,6 +6,7 @@ const PhoneSVG = ({
 	handleLinkPress,
 	handleNumKeyPress,
 	handleOkPress,
+	startingUp,
 }) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@ const PhoneSVG = ({
 				style={{ mixBlendMode: 'hard-light' }}
 				onClick={(e) => handleNumKeyPress(e)}
 			>
-				<g id="#" className="button">
+				<g id="#" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="#"
 						fill="#323232"
@@ -78,7 +79,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="0" className="button">
+				<g id="0" className={startingUp ? 'boot-button' : 'button'}>
 					<rect
 						id="0"
 						width="82.189"
@@ -105,7 +106,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="*" className="button">
+				<g id="*" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="*"
 						fill="#323232"
@@ -142,7 +143,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="9" className="button">
+				<g id="9" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="9"
 						fill="#323232"
@@ -179,7 +180,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="8" className="button">
+				<g id="8" className={startingUp ? 'boot-button' : 'button'}>
 					å
 					<rect
 						id="8"
@@ -221,7 +222,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="7" className="button">
+				<g id="7" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="7"
 						fill="#323232"
@@ -258,7 +259,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="6" className="button">
+				<g id="6" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="6"
 						fill="#323232"
@@ -295,7 +296,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="5" className="button">
+				<g id="5" className={startingUp ? 'boot-button' : 'button'}>
 					<rect
 						id="5"
 						width="82.189"
@@ -336,7 +337,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="4" className="button">
+				<g id="4" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="4"
 						fill="#323232"
@@ -373,7 +374,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="3" className="button">
+				<g id="3" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						id="3"
 						fill="#323232"
@@ -410,7 +411,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="2" className="button">
+				<g id="2" className={startingUp ? 'boot-button' : 'button'}>
 					<rect
 						id="2"
 						width="82.189"
@@ -451,7 +452,7 @@ const PhoneSVG = ({
 						</tspan>
 					</text>
 				</g>
-				<g id="1" className="button">
+				<g id="1" className={startingUp ? 'boot-button' : 'button'}>
 					<path
 						className="test1"
 						id="1"
