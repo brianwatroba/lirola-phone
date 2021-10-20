@@ -75,8 +75,7 @@ const PhoneBody = ({
 				setEntered([]);
 				setMessages({ ...messages, screen: 'INVALID NUMBER' });
 				setTimeout(
-					() =>
-						setMessages({ ...messages, screen: 'Searching for service...' }),
+					() => setMessages({ ...messages, screen: initialScreenMessage }),
 					2000
 				);
 			}
