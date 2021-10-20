@@ -32,10 +32,9 @@ const Main = () => {
 
 	const takeScreenshot = () => {
 		html2canvas(screenshotRef.current).then((canvas) => {
-			console.log(canvas);
-			const image = canvas.toDataURL('img/png');
+			const image = canvas.toDataURL('img/jpeg');
 			var link = document.createElement('a');
-			link.download = 'selfie.png';
+			link.download = 'lirola-selfie.jpeg';
 			link.href = image;
 			link.click();
 		});

@@ -13,7 +13,7 @@ const Screen = ({ isOpen, messages, entered, loading, startingUp }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));
 	return startingUp ? (
 		<BootContainer>
-			<BootMessage>HELLO LIRO</BootMessage>
+			<BootMessage>HELO LIRO</BootMessage>
 		</BootContainer>
 	) : (
 		<Container>
