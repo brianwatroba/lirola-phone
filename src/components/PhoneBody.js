@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import useSound from 'use-sound';
 
 import PhoneSVG from './PhoneSVG';
@@ -47,15 +47,6 @@ const PhoneBody = ({
 		setEntered([]);
 		setHasPhoto(false);
 		setIsOpen({ camera: false, input: false, sending: false });
-		// if (isOpen.input) {
-		// 	setIsOpen({ ...isOpen, input: false });
-		// }
-		// if (isOpen.camera) {
-		// 	setIsOpen({ ...isOpen, camera: false });
-		// }
-		// if (isOpen.sending) {
-		// 	setIsOpen({ ...isOpen, sending: false });
-		// }
 	};
 
 	const handleOkPress = async () => {
@@ -82,13 +73,8 @@ const PhoneBody = ({
 		} else if (hasPhoto) {
 			play({ id: 'key2' });
 			takeScreenshot();
-
-			// setIsOpen({ ...isOpen, sending: true });
 		} else if (isOpen.sending) {
 			play({ id: 'key2' });
-
-			// setLoading(true);
-			// setMessages({ ...messages, loading: 'SENDING' });
 			setIsOpen({ camera: false, input: false, sending: false });
 		}
 	};
