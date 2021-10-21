@@ -1,9 +1,9 @@
-const getVideo = (videoRef) => {
+const getVideo = (videoRef, direction) => {
 	if (navigator.mediaDevices) {
 		navigator.mediaDevices
 			.getUserMedia({
 				video: {
-					facingMode: 'user',
+					facingMode: direction,
 					frameRate: { max: 12 },
 					width: 1500,
 					height: 1500,

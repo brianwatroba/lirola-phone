@@ -20,11 +20,11 @@
 
 @keyframes gummyPulse {
 	0% {
-		fill: #3e8e41;
+		fill: #3a3a3a;
 	}
 
 	100.0% {
-		fill: #c4c4c4;
+		fill: #d04033;
 	}
 }
 
