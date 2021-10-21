@@ -18,12 +18,31 @@
 	}
 }
 
+@keyframes gummyPulse {
+	0% {
+		fill: #3e8e41;
+	}
+
+	100.0% {
+		fill: #c4c4c4;
+	}
+}
+
 .button:hover {
-	/* fill: red; */
 	cursor: pointer;
 }
 
 .button:active > text {
+	animation: lightUp 2s forwards linear;
+	transform: translateY(1px);
+}
+
+.button:active > g > mask {
+	animation: lightUp 2s forwards linear;
+	transform: translateY(1px);
+}
+
+.button:active {
 	animation: lightUp 2s forwards linear;
 	transform: translateY(1px);
 }
@@ -34,4 +53,12 @@
 
 .boot-button > text {
 	animation: pulse 0.75s infinite ease-out;
+}
+
+.boot-button-gummy > g + g > path {
+	animation: gummyPulse 0.75s infinite ease-out;
+}
+
+.boot-button-gummy > g + g > g > path {
+	animation: gummyPulse 0.75s infinite ease-out;
 }

@@ -6,8 +6,6 @@ import signalIcon from '../icons/signal.png';
 import dayjs from 'dayjs';
 import NumInput from './NumInput';
 import OptionsBar from './OptionsBar';
-// import localeData from 'dayjs/plugin/localeData';
-// dayjs.extend(localeData);
 
 const Screen = ({ isOpen, messages, entered, loading, startingUp }) => {
 	const [time, setTime] = useState(dayjs().format('h:mm'));

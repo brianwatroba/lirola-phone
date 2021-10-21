@@ -44,9 +44,6 @@ const Main = () => {
 	useEffect(() => {
 		hideLoader();
 		setTimeout(() => setStartingUp(false), 4000);
-		// return () => {
-		// 	setEntered([]);
-		// };
 	}, []);
 
 	return (
