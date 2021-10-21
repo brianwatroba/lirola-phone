@@ -480,7 +480,7 @@ const PhoneSVG = ({
 			<g id="Link Buttons">
 				<g
 					id="instagram"
-					className="button"
+					className={startingUp ? 'boot-button-gummy' : 'button'}
 					onClick={(e) => handleLinkPress(e)}
 				>
 					<g id="instagram">
@@ -514,7 +514,11 @@ const PhoneSVG = ({
 						></path>
 					</g>
 				</g>
-				<g id="email" className="button" onClick={(e) => handleLinkPress(e)}>
+				<g
+					id="email"
+					className={startingUp ? 'boot-button-gummy' : 'button'}
+					onClick={(e) => handleLinkPress(e)}
+				>
 					<g id="email">
 						<mask id="path-43-inside-2" fill="#fff">
 							<path d="M105.769 589.141c-3.357 1.896-5.036 2.844-4.88 4.165.156 1.322 1.979 1.844 5.624 2.889 19.599 5.62 42.379 8.782 65.86 9.112 1.87.026 2.806.04 3.401-.546.596-.587.598-1.531.601-3.419l.056-29.186c.003-1.871.005-2.806-.552-3.388-.557-.582-1.52-.621-3.446-.701-7.446-.307-14.596-1.459-20.737-3.349-.872-.268-1.308-.402-1.718-.358-.409.045-.789.259-1.548.688l-42.661 24.093z"></path>
@@ -538,7 +542,11 @@ const PhoneSVG = ({
 						</g>
 					</g>
 				</g>
-				<g id="website" className="button" onClick={(e) => handleLinkPress(e)}>
+				<g
+					id="website"
+					className={startingUp ? 'boot-button-gummy' : 'button'}
+					onClick={(e) => handleLinkPress(e)}
+				>
 					<g id="website">
 						<mask id="path-45-inside-3" fill="#fff">
 							<path
@@ -563,7 +571,11 @@ const PhoneSVG = ({
 						></path>
 					</g>
 				</g>
-				<g id="back" className="button" onClick={handleBackspacePress}>
+				<g
+					id="back"
+					className={startingUp ? 'boot-button-gummy' : 'button'}
+					onClick={handleBackspacePress}
+				>
 					<g id="Ellipse 21">
 						<mask id="path-47-inside-4" fill="#fff">
 							<path d="M305.772 545.976c1.931 0 2.896 0 3.495.701.599.702.462 1.562.188 3.282-1.099 6.89-5.04 13.643-11.651 19.914-7.567 7.177-18.452 13.554-31.932 18.712-.82.314-1.231.471-1.667.443-.436-.028-.829-.24-1.615-.664l-40.31-21.749c-3.204-1.729-4.806-2.593-4.834-3.753-.029-1.16 1.66-2.182 5.038-4.226 1.846-1.117 3.449-2.316 4.781-3.579 1.745-1.656 3.001-3.401 3.745-5.189.892-2.147 1.339-3.22 1.843-3.556.504-.336 1.322-.336 2.959-.336h69.96z"></path>
@@ -576,7 +588,7 @@ const PhoneSVG = ({
 							mask="url(#path-47-inside-4)"
 						></path>
 					</g>
-					<g id="noun_Backspace_471426 2" opacity="0.75">
+					<g id="noun_Backspace_471426-2" opacity="0.75">
 						<path
 							id="Vector_6"
 							fill="#3A3A3A"
