@@ -94,8 +94,9 @@ const Main = () => {
 };
 
 const PhoneContainer = styled.div`
+    margin-top: 3%;
     position: relative;
-    height: 85vh;
+    height: 82vh;
     background-color: #222;
     text-align: center;
     aligncontent: center;
