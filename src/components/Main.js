@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import domtoimage from "dom-to-image";
-import html2canvas from "html2canvas";
-import screenshot from "image-screenshot";
 
 import PhoneBody from "./PhoneBody";
 import Screen from "./Screen";
@@ -10,6 +7,7 @@ import Camera from "./Camera";
 
 import useBbox from "../hooks/useBbox";
 import hideLoader from "../utils/hideLoader";
+import takeScreenshot from "../utils/takeScreenshot";
 
 const Main = () => {
     const [bbox, ref] = useBbox();
@@ -32,26 +30,6 @@ const Main = () => {
     const [hasPhoto, setHasPhoto] = useState(false);
     const [startingUp, setStartingUp] = useState(true);
 
-    const takeScreenshot = () => {
-        // html2canvas(screenshotRef.current).then((canvas) => {
-        //     console.log(canvas);
-        //     const image = canvas.toDataURL("img/jpeg");
-        //     var link = document.createElement("a");
-        //     link.download = "lirola-selfie.jpeg";
-        //     link.href = image;
-        //     screenshot(canvas).download();
-        //     // link.click();
-        // });
-
-        domtoimage
-            .toJpeg(document.getElementById("root"), { quality: 0.95 })
-            .then(function (dataUrl) {
-                var link = document.createElement("a");
-                link.download = "my-image-name.jpeg";
-                link.href = dataUrl;
-                link.click();
-            });
-    };
     const screenshotRef = useRef(null);
 
     useEffect(() => {
