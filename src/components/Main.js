@@ -8,6 +8,7 @@ import Camera from "./Camera";
 import useBbox from "../hooks/useBbox";
 import hideLoader from "../utils/hideLoader";
 import takeScreenshot from "../utils/takeScreenshot";
+import getVideo from "../utils/getVideo";
 
 const Main = () => {
     const [bbox, ref] = useBbox();
@@ -16,6 +17,7 @@ const Main = () => {
         videoContainerRef = useRef(null);
 
     const initialScreenMessage = "READY";
+    const [cameraDirection, setCameraDirection] = useState("user");
     const [messages, setMessages] = useState({
         screen: initialScreenMessage,
         loading: "LOADING",
@@ -58,6 +60,8 @@ const Main = () => {
                     videoContainerRef={videoContainerRef}
                     startingUp={startingUp}
                     takeScreenshot={takeScreenshot}
+                    cameraDirection={cameraDirection}
+                    setCameraDirection={setCameraDirection}
                 />
             </PhoneContainer>
             <ScreenContainer bbox={bbox}>
@@ -70,6 +74,7 @@ const Main = () => {
                         videoContainerRef={videoContainerRef}
                         entered={entered}
                         isOpen={isOpen}
+                        cameraDirection={cameraDirection}
                     />
                 ) : (
                     <Screen

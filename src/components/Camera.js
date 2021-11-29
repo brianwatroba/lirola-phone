@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 import OptionsBar from "./OptionsBar";
@@ -13,10 +13,11 @@ const Camera = ({
     photoRef,
     videoContainerRef,
     hasPhoto,
+    cameraDirection,
 }) => {
     useEffect(() => {
-        getVideo(videoRef, "user");
-    }, [videoRef, photoRef]);
+        getVideo(videoRef, cameraDirection);
+    }, [videoRef, photoRef, cameraDirection]);
 
     return (
         <Container ref={videoContainerRef}>
