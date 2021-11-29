@@ -15,7 +15,7 @@ const Camera = ({
     hasPhoto,
 }) => {
     useEffect(() => {
-        getVideo(videoRef, "environment");
+        getVideo(videoRef, "user");
     }, [videoRef, photoRef]);
 
     return (
