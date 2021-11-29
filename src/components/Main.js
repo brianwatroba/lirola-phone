@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import html2canvas from "html2canvas";
-import domtoimage from "dom-to-image";
+import screenshot from "image-screenshot";
 
 import PhoneBody from "./PhoneBody";
 import Screen from "./Screen";
@@ -32,16 +32,15 @@ const Main = () => {
     const [startingUp, setStartingUp] = useState(true);
 
     const takeScreenshot = () => {
-        html2canvas(screenshotRef.current, { scrollY: -window.scrollY }).then(
-            (canvas) => {
-                console.log(canvas);
-                const image = canvas.toDataURL("img/jpeg");
-                var link = document.createElement("a");
-                link.download = "lirola-selfie.jpeg";
-                link.href = image;
-                link.click();
-            }
-        );
+        html2canvas(screenshotRef.current).then((canvas) => {
+            console.log(canvas);
+            const image = canvas.toDataURL("img/jpeg");
+            var link = document.createElement("a");
+            link.download = "lirola-selfie.jpeg";
+            link.href = image;
+            screenshot(canvas).download();
+            // link.click();
+        });
     };
     const screenshotRef = useRef(null);
 
