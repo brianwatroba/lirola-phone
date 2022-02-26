@@ -1,68 +1,68 @@
 @keyframes lightUp {
-    0% {
-        fill: #3e8e41;
-    }
+  0% {
+    fill: #3e8e41;
+  }
 
-    100.0% {
-        fill: #3e8e41;
-    }
+  100.0% {
+    fill: #3e8e41;
+  }
 }
 
 @keyframes pulse {
-    0% {
-        fill: #3e8e41;
-    }
+  0% {
+    fill: #3e8e41;
+  }
 
-    100.0% {
-        fill: #fff;
-    }
+  100.0% {
+    fill: #fff;
+  }
 }
 
 @keyframes gummyPulse {
-    0% {
-        fill: #3a3a3a;
-    }
+  0% {
+    fill: #3a3a3a;
+  }
 
-    100.0% {
-        fill: #d04033;
-    }
+  100.0% {
+    fill: #d04033;
+  }
 }
 
 .button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .button:active > text {
-    animation: lightUp 2s forwards linear;
-    transform: translateY(1px);
+  animation: lightUp 2s forwards linear;
+  transform: translateY(1px);
 }
 
 .button:active > g > mask {
-    animation: lightUp 2s forwards linear;
-    transform: translateY(1px);
+  animation: lightUp 2s forwards linear;
+  transform: translateY(1px);
 }
 
 .button:active {
-    animation: lightUp 2s forwards linear;
-    transform: translateY(1px);
+  animation: lightUp 2s forwards linear;
+  transform: translateY(1px);
 }
 
 .button {
-    animation: lightUp 2s forwards linear;
+  animation: lightUp 2s forwards linear;
 }
 
 .boot-button > text {
-    animation: pulse 0.75s infinite ease-out;
+  animation: pulse 0.75s infinite ease-out;
 }
 
 .boot-button-gummy > g + g > path {
-    animation: gummyPulse 0.75s infinite ease-out;
+  animation: gummyPulse 0.75s infinite ease-out;
 }
 
 .boot-button-gummy > g + g > g > path {
-    animation: gummyPulse 0.75s infinite ease-out;
+  animation: gummyPulse 0.75s infinite ease-out;
 }
 
 .html2canvas-container {
-    height: 100vh;
+  height: 100vh;
 }

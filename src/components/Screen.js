@@ -1,57 +1,53 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import phoneWallpaper from '../icons/phonewallpaper.png';
-import batteryIcon from '../icons/battery.png';
-import signalIcon from '../icons/signal.png';
-import dayjs from 'dayjs';
-import NumInput from './NumInput';
-import OptionsBar from './OptionsBar';
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import phoneWallpaper from "../icons/phonewallpaper.png";
+import batteryIcon from "../icons/battery.png";
+import signalIcon from "../icons/signal.png";
+import dayjs from "dayjs";
+import NumInput from "./NumInput";
+import OptionsBar from "./OptionsBar";
 
 const Screen = ({ isOpen, messages, entered, loading, startingUp }) => {
-	const [time, setTime] = useState(dayjs().format('h:mm'));
-	return startingUp ? (
-		<BootContainer>
-			<BootMessage>HELO LIRO</BootMessage>
-		</BootContainer>
-	) : (
-		<Container>
-			<StatusBar>
-				<img src={batteryIcon} style={{ height: '3vh' }} alt="battery" />
-				<Clock>{time}</Clock>
-				<img src={signalIcon} style={{ height: '3vh' }} alt="signal" />
-			</StatusBar>
-			<ScreenContent>
-				{!loading && <ReadyText>{messages.screen}</ReadyText>}
-				{loading && (
-					<>
-						<StatusText>{messages.loading}</StatusText>
-						<ProgressBar>
-							<ProgressShown />
-						</ProgressBar>
-					</>
-				)}
-			</ScreenContent>
-			{isOpen.input && (
-				<Dialog>
-					<NumInput title={'ENTERING:'} entered={entered} />
-					<OptionsBar left={'OK'} right={'CANCEL'} />
-				</Dialog>
-			)}
-		</Container>
-	);
+  const [time, setTime] = useState(dayjs().format("h:mm"));
+  return startingUp ? (
+    <BootContainer>
+      <BootMessage>HELO LIRO</BootMessage>
+    </BootContainer>
+  ) : (
+    <Container>
+      <StatusBar>
+        <img src={batteryIcon} style={{ height: "3vh" }} alt="battery" />
+        <Clock>{time}</Clock>
+        <img src={signalIcon} style={{ height: "3vh" }} alt="signal" />
+      </StatusBar>
+      <ScreenContent>
+        {!loading && <ReadyText>{messages.screen}</ReadyText>}
+        {loading && (
+          <>
+            <StatusText>{messages.loading}</StatusText>
+            <ProgressBar>
+              <ProgressShown />
+            </ProgressBar>
+          </>
+        )}
+      </ScreenContent>
+      {isOpen.input && (
+        <Dialog>
+          <NumInput title={"ENTERING:"} entered={entered} />
+          <OptionsBar left={"OK"} right={"CANCEL"} />
+        </Dialog>
+      )}
+    </Container>
+  );
 };
 
 const Container = styled.div`
-	position: relative;
-	display: flex;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-	background-image: linear-gradient(
-			rgba(170, 206, 141, 0.75),
-			rgba(170, 206, 141, 0.75)
-		),
-		url(${phoneWallpaper});
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-image: linear-gradient(rgba(170, 206, 141, 0.75), rgba(170, 206, 141, 0.75)), url(${phoneWallpaper});
 `;
 
 const FadeInOut = keyframes`
@@ -71,18 +67,18 @@ const BackgroundFadeIn = keyframes`
 `;
 
 const BootContainer = styled.div`
-	position: relative;
-	display: flex;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-	// background-color: rgba(170, 206, 141, 0.75)
-	// background-image: linear-gradient(
-	// 		rgba(170, 206, 141, 0.75),
-	// 		rgba(170, 206, 141, 0.75)
-	// 	),
-	// 	url(${phoneWallpaper});
-	animation: ${BackgroundFadeIn} 4s ease-in;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  // background-color: rgba(170, 206, 141, 0.75)
+  // background-image: linear-gradient(
+  // 		rgba(170, 206, 141, 0.75),
+  // 		rgba(170, 206, 141, 0.75)
+  // 	),
+  // 	url(${phoneWallpaper});
+  animation: ${BackgroundFadeIn} 4s ease-in;
 `;
 
 const ProgressAnimation = keyframes`
@@ -100,77 +96,77 @@ const ProgressAnimation = keyframes`
 `;
 
 const ProgressBar = styled.div`
-	height: 10%;
-	width: 80%;
-	border: 0.3vh solid #5a5a5a;
+  height: 10%;
+  width: 80%;
+  border: 0.3vh solid #5a5a5a;
 `;
 
 const ProgressShown = styled.div`
-	height: 100%;
-	background-color: #5a5a5a;
-	animation: ${ProgressAnimation} 1.5s;
+  height: 100%;
+  background-color: #5a5a5a;
+  animation: ${ProgressAnimation} 1.5s;
 `;
 
 const StatusBar = styled.div`
-	display: flex;
-	width: auto;
-	padding: 4px 8px 0px 8px;
-	justify-content: space-between;
-	flex-direction: row;
+  display: flex;
+  width: auto;
+  padding: 4px 8px 0px 8px;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 const ScreenContent = styled.div`
-	display: flex;
-	height: 100%;
-	width: 100%;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	flex-grow: 1;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 `;
 
 const Clock = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: 1vh;
-	color: #848484;
+  display: flex;
+  align-items: center;
+  font-size: 1vh;
+  color: #848484;
 `;
 
 const ReadyText = styled.div`
-	text-align: center;
-	font-size: 1.5vh;
-	color: #5a5a5a;
-	animation: ${FadeInOut} 2s ease-out infinite;
+  text-align: center;
+  font-size: 1.5vh;
+  color: #5a5a5a;
+  animation: ${FadeInOut} 2s ease-out infinite;
 `;
 
 const Dialog = styled.div`
-	position: absolute;
-	bottom: 0;
-	display: flex;
-	height: 60%;
-	width: 100%;
-	flex-direction: column;
-	justify-content: end;
-	align-items: center;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  height: 60%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 `;
 
 const StatusText = styled.div`
-	font-size: 1.5vh;
-	color: #5a5a5a;
-	margin-bottom: 10%;
+  font-size: 1.5vh;
+  color: #5a5a5a;
+  margin-bottom: 10%;
 `;
 
 const BootMessage = styled.div`
-	display: flex;
-	height: 100%;
-	width: 100%;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	flex-grow: 1;
-	color: #5a5a5a;
-	font-size: 2vh;
-	animation: ${FadeIn} 2s ease-in;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  color: #5a5a5a;
+  font-size: 2vh;
+  animation: ${FadeIn} 2s ease-in;
 `;
 
 export default Screen;
