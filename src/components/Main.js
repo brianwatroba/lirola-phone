@@ -8,7 +8,6 @@ import Camera from "./Camera";
 import useBbox from "../hooks/useBbox";
 import hideLoader from "../utils/hideLoader";
 import takeScreenshot from "../utils/takeScreenshot";
-import getVideo from "../utils/getVideo";
 
 const Main = () => {
   const [bbox, ref] = useBbox();

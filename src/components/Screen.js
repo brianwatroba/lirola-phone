@@ -72,12 +72,6 @@ const BootContainer = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  // background-color: rgba(170, 206, 141, 0.75)
-  // background-image: linear-gradient(
-  // 		rgba(170, 206, 141, 0.75),
-  // 		rgba(170, 206, 141, 0.75)
-  // 	),
-  // 	url(${phoneWallpaper});
   animation: ${BackgroundFadeIn} 4s ease-in;
 `;
 
