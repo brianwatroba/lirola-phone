@@ -96,7 +96,7 @@ const PhoneContainer = styled.div`
   margin-top: 3%;
   position: relative;
   height: 82vh;
-  background-color: #222;
+  background-color: #000;
   text-align: center;
   aligncontent: center;
   display: flex;
