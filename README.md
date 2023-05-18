@@ -1,7 +1,5 @@
 # Lirola Phone 📱
 
-<img src="https://res.cloudinary.com/dfuyisjqi/image/upload/v1684436720/Screenshot_2023-05-18_at_3.04.31_PM_ffl6a5.png" />
-
 Retro phone simulator.
 
 Built for [Jesse Lirola](https://www.jesselirola.com) as an experimental portfolio site. Includes retro camera, special code links (try "DONDA" on the keypad), and other easter eggs.
@@ -18,6 +16,8 @@ App link: https://www.liro.la
 </div>
 
 ---
+
+<img src="https://res.cloudinary.com/dfuyisjqi/image/upload/v1684436720/Screenshot_2023-05-18_at_3.04.31_PM_ffl6a5.png" />
 
 # Local access
 
