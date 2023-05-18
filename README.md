@@ -1,6 +1,8 @@
 # Lirola Phone 📱
 
-Retro phone simulator. 
+<img src="https://res.cloudinary.com/dfuyisjqi/image/upload/v1684436720/Screenshot_2023-05-18_at_3.04.31_PM_ffl6a5.png" />
+
+Retro phone simulator.
 
 Built for [Jesse Lirola](https://www.jesselirola.com) as an experimental portfolio site. Includes retro camera, special code links (try "DONDA" on the keypad), and other easter eggs.
 
@@ -20,6 +22,7 @@ App link: https://www.liro.la
 # Local access
 
 Instructions
+
 1. Install Node.js
 2. Create a .env file and include AIRTABLE_API_KEY. Jesse will have the key.
 3. npm install
@@ -27,4 +30,5 @@ Instructions
 5. Open localhost:8888 in your browser
 
 Other notes
+
 1. Audio sprite + open graph image file are hosted in an S3 bucket. If you want to change these or use different hosting, change the file URLs directly in the code (PhoneBody.js component and index.html respectively)
