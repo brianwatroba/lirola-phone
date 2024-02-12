@@ -2,7 +2,7 @@
 
 Retro phone simulator.
 
-Built for [Jesse Lirola](https://www.jesselirola.com) as an experimental portfolio site. Includes retro camera, special code links (try "DONDA" on the keypad), and other easter eggs.
+Built for [Jesse Lirola](https://www.jesselirola.com) as an experimental portfolio site. Includes retro camera, special code links, and other easter eggs.
 
 App link: https://www.liro.la
 
